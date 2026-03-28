@@ -27,16 +27,18 @@
   --green-soft:#ebf9f2;
   --blue-soft:#edf5ff;
   --orange-soft:#fff3e7;
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 20px;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family: "SF Pro Text", "Inter", "Avenir Next", "Segoe UI", sans-serif;
+  font-family:"SF Pro Text","Inter","Avenir Next","Segoe UI",sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at top left, rgba(243,168,200,.35), transparent 26%),
@@ -139,7 +141,14 @@ button:hover{transform:translateY(-1px)}
 .compare-head{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:800;margin-bottom:10px;color:var(--text)}
 .compare-item{font-size:.9rem;color:var(--text-soft);padding:7px 0;border-bottom:1px solid rgba(143,121,214,.08);line-height:1.5}
 .compare-item:last-child{border-bottom:none}
-.tip{background:linear-gradient(180deg, rgba(237,245,255,.92), rgba(255,255,255,.84));border:1px solid rgba(141,184,236,.26);border-radius:22px;padding:14px 16px;margin-bottom:16px;box-shadow:0 10px 30px rgba(111,94,154,.07)}
+.tip{
+  background:linear-gradient(180deg, rgba(237,245,255,.92), rgba(255,255,255,.84));
+  border:1px solid rgba(141,184,236,.26);
+  border-radius:22px;
+  padding:14px 16px;
+  margin-bottom:16px;
+  box-shadow:0 10px 30px rgba(111,94,154,.07)
+}
 .tip-title{font-size:.95rem;font-weight:800;color:#356aa8;margin-bottom:8px}
 .tip-item{font-size:.9rem;color:var(--text-soft);padding:5px 0;line-height:1.5}
 .v{font-weight:800;color:var(--text)}
@@ -154,10 +163,22 @@ button:hover{transform:translateY(-1px)}
 .quiz-fb.ok{background:rgba(133,207,180,.16);color:#166649;border:1px solid rgba(133,207,180,.45)}
 .quiz-fb.err{background:rgba(243,168,200,.16);color:#a14f73;border:1px solid rgba(243,168,200,.4)}
 
-footer{margin-top:26px;text-align:center;color:var(--text-faint);font-size:.84rem}
+footer{
+  margin-top:60px;
+  padding-top:18px;
+  border-top:1px solid rgba(180,150,200,.3);
+  text-align:center;
+  font-size:12.5px;
+  color:#7a6a8f;
+  opacity:.85;
+  line-height:1.7;
+  letter-spacing:.3px;
+}
+
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-thumb{background:rgba(143,121,214,.25);border-radius:999px}
 ::-webkit-scrollbar-track{background:transparent}
+
 @media (max-width:900px){
   .grid3,.method-grid,.grid2,.compare-row{grid-template-columns:1fr}
 }
@@ -173,429 +194,418 @@ footer{margin-top:26px;text-align:center;color:var(--text-faint);font-size:.84re
 </head>
 <body>
   <div class="container">
+    <div class="wrap">
+      <div class="hero">
+        <div class="hero-icon">🧠</div>
+        <div>
+          <h1>Nutrição Experimental</h1>
+          <p>Segunda avaliação · guia interativo de revisão</p>
+        </div>
+      </div>
 
-<div class="wrap">
-<div class="hero">
-  <div class="hero-icon">🧠</div>
-  <div>
-    <h1>Nutrição Experimental</h1>
-    <p>Segunda avaliação · guia interativo de revisão</p>
+      <div class="tabs">
+        <div class="tab active" onclick="showTab('dietas')">Dietas</div>
+        <div class="tab" onclick="showTab('modelos')">Modelos experimentais</div>
+        <div class="tab" onclick="showTab('vias')">Vias de administração</div>
+        <div class="tab" onclick="showTab('avals')">Avaliações</div>
+        <div class="tab" onclick="showTab('biot')">Biotério</div>
+        <div class="tab" onclick="showTab('quiz')">Mini-quiz</div>
+      </div>
+
+      <!-- TAB: DIETAS -->
+      <div class="panel active" id="tab-dietas">
+        <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Dietas para roedores</div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title" style="color:#3C3489">Ração comercial</div>
+            <div class="item">Composição variável entre lotes</div>
+            <div class="item">Usada em estudos sem manipulação dietética</div>
+            <div class="item">Não permite controle preciso de nutrientes</div>
+            <div class="item">Menor custo e praticidade</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#085041">Dietas AIN (American Institute of Nutrition)</div>
+            <div class="item">Composição química definida e reprodutível</div>
+            <div class="item">Usadas quando a dieta é a variável do estudo</div>
+            <div class="item">Permitem adicionar/remover nutrientes com precisão</div>
+            <div class="item">Preparadas no próprio laboratório</div>
+          </div>
+        </div>
+
+        <div class="tip">
+          <div class="tip-title">Dietas AIN-93G e AIN-93M</div>
+
+          <div class="tip-item">
+            As dietas AIN-93 são dietas purificadas, quimicamente definidas, amplamente utilizadas em estudos experimentais com roedores.
+          </div>
+
+          <div class="tip-item">
+            A dieta <strong>AIN-93G</strong> é indicada para fases de crescimento, sendo utilizada em <strong>filhotes, gestantes e lactantes</strong>, pois apresenta maior densidade energética e maior teor de nutrientes necessários ao desenvolvimento.
+          </div>
+
+          <div class="tip-item">
+            Já a dieta <strong>AIN-93M</strong> é destinada à fase de manutenção, sendo utilizada em animais adultos, com composição ajustada para manter o organismo sem promover crescimento.
+          </div>
+
+          <div class="tip-item">
+            Em relação à composição, <strong>ambas as dietas apresentam a mesma quantidade de celulose</strong>, diferindo principalmente nos teores de proteínas, lipídios e carboidratos, conforme as demandas fisiológicas de cada fase.
+          </div>
+        </div>
+
+        <div class="tip">
+          <div class="tip-title">Pontos essenciais sobre as dietas AIN-93</div>
+
+          <div class="tip-item">
+            → AIN-76A apresentava maior teor de sacarose e menor quantidade de óleo (5% de óleo de milho).
+          </div>
+
+          <div class="tip-item">
+            → Nas dietas AIN-93, o óleo utilizado é <strong>óleo de soja</strong>, devido ao melhor perfil lipídico, especialmente na razão ω-6:ω-3 (7:1) e PUFA:saturado (4:1).
+          </div>
+
+          <div class="tip-item">
+            → A quantidade de óleo de soja difere entre as dietas: <strong>7% na AIN-93G</strong> e <strong>4% na AIN-93M</strong>.
+          </div>
+
+          <div class="tip-item">
+            → A caseína é a fonte proteica padrão — disponível, de baixo custo e bem estudada. Suplementa-se L-cistina por ser deficiente em aminoácidos sulfurados.
+          </div>
+
+          <div class="tip-item">
+            → Perfil de carboidratos: ambas têm sacarose + amido de milho + amido dextrinizado — o que varia é a proporção entre os amidos.
+          </div>
+        </div>
+
+        <div class="tip">
+          <div class="tip-title">Atenção — dúvidas frequentes sobre dietas</div>
+
+          <div class="tip-item">
+            → AIN-93G ≠ AIN-93M não apenas em lipídios — diferem em proteína, lipídio, fósforo e carboidratos, <strong>porém apresentam a mesma quantidade de fibras (celulose)</strong>.
+          </div>
+
+          <div class="tip-item">
+            → AIN-76A apresentava <strong>maior teor de sacarose e menor quantidade de óleo</strong> (5% de óleo de milho), enquanto as dietas AIN-93 utilizam <strong>óleo de soja</strong>.
+          </div>
+
+          <div class="tip-item">
+            → A quantidade de óleo de soja <strong>não é a mesma</strong> entre as dietas AIN-93: é maior na AIN-93G e menor na AIN-93M.
+          </div>
+
+          <div class="tip-item">
+            → O aminoácido suplementado na AIN-93 é a L-cistina, devido à limitação da caseína em aminoácidos sulfurados.
+          </div>
+
+          <div class="tip-item">
+            → Consumo alimentar: a periodicidade da avaliação depende do delineamento do estudo, não sendo obrigatoriamente diária.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: MODELOS -->
+      <div class="panel" id="tab-modelos">
+        <div class="sec-title"><span class="dot" style="background:#0F6E56"></span>Modelos de indução — visão geral</div>
+
+        <div class="method-grid">
+          <div class="method-card" style="background:#F0FAF6;border-color:#5DCAA5">
+            <div class="method-title" style="color:#085041">Desnutrição</div>
+            <div class="method-item">Perinatal: lig. mamas, lig. artéria uterina, separação filhotes, grandes ninhadas (16)</div>
+            <div class="method-item">Qualquer fase: DBR, gelatina (baixa qualidade prot.), restrição calórica (35–65%)</div>
+          </div>
+          <div class="method-card" style="background:#F0FAF6;border-color:#5DCAA5">
+            <div class="method-title" style="color:#085041">Obesidade</div>
+            <div class="method-item">Dietético: cafeteria, ocidentalizada, hiperlipídica, hipercalórica</div>
+            <div class="method-item">Neuroendócrino: MSG (1ª semana de vida), lesão elétrica NVM</div>
+            <div class="method-item">Cirúrgico: ovariectomia (fêmeas adultas → menopausa)</div>
+            <div class="method-item">Genético: ob/ob, Zucker, Camundongo amarelo</div>
+          </div>
+          <div class="method-card" style="background:#FEF6F3;border-color:#F0997B">
+            <div class="method-title" style="color:#712B13">Diabetes tipo 1</div>
+            <div class="method-item">Químico: Aloxana (EV 42mg/kg ou IP 120mg/kg) ou STZ (EV/IP 50–60mg/kg) após jejum 24h</div>
+            <div class="method-item">Genético: camundongo NOD, rato BB</div>
+          </div>
+          <div class="method-card" style="background:#FEF6F3;border-color:#F0997B">
+            <div class="method-title" style="color:#712B13">Diabetes tipo 2</div>
+            <div class="method-item">Dietético: dieta hiperlipídica (high-fat) por tempo prolongado → resistência insulínica</div>
+            <div class="method-item">Genético: ob/ob, Zucker (ambos também desenvolvem DM2 associado à obesidade)</div>
+          </div>
+          <div class="method-card" style="background:#EDF4FE;border-color:#85B7EB">
+            <div class="method-title" style="color:#0C447C">Hipertensão</div>
+            <div class="method-item">Cirúrgico: nefrectomia bilateral + NaCl 1% (mais estudado, simula fisiopatologia humana); estenose artéria renal (Goldblatt)</div>
+            <div class="method-item">Químico: L-NAME (inibe NO-sintase); DOCA-sal (animais jovens)</div>
+            <div class="method-item">Genético: SHR (7ª–15ª sem.); ratos Dahl sensíveis ao sal</div>
+          </div>
+          <div class="method-card" style="background:#FDF6E6;border-color:#EF9F27">
+            <div class="method-title" style="color:#633806">Dislipidemia</div>
+            <div class="method-item">Dietético: high-fat + banha + colesterol + ácido cólico (10%, 1%, 0,1%)</div>
+            <div class="method-item">Químico: Triton IP 100mg/kg (hipercolest.); Poloxamer IP 300–500mg/kg</div>
+            <div class="method-item">Genético: camundongo ApoE–/– (aterosclerose espontânea)</div>
+          </div>
+        </div>
+
+        <div class="sec-title"><span class="dot" style="background:#993C1D"></span>Modelos genéticos — detalhes importantes</div>
+        <div class="grid3">
+          <div class="card">
+            <div class="card-title" style="color:#712B13">Camundongo ob/ob</div>
+            <div class="item">Mutação cromossomo 6</div>
+            <div class="item">Ausência de síntese de leptina</div>
+            <div class="item">Fenótipo: hiperfágico, obeso, diabético (DM2)</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#712B13">Rato Zucker</div>
+            <div class="item">Mutação no receptor de leptina</div>
+            <div class="item">Leptina produzida, mas não reconhecida</div>
+            <div class="item">Fenótipo: hiperfágico, obeso, diabético (DM2)</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#712B13">Camundongo amarelo</div>
+            <div class="item">Mutação cromossomo 2</div>
+            <div class="item">Excesso proteína agouti → resposta orexígena</div>
+            <div class="item">Fenótipo: hiperfagia, obesidade</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#0C447C">Camundongo NOD</div>
+            <div class="item">Destruição autoimune células beta</div>
+            <div class="item">Diabetes tipo 1 espontâneo</div>
+            <div class="item">Sintomas: glicemia > 250mg/dL, glicosúria</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#0C447C">Rato BB (Biobreeding)</div>
+            <div class="item">Ausência células T, insulite espontânea</div>
+            <div class="item">Sintomas por volta de 12 semanas</div>
+            <div class="item">DM1 com cetoacidose, polidipsia, poliúria</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#633806">Camundongo ApoE–/–</div>
+            <div class="item">Sem proteína apolipoproteína E</div>
+            <div class="item">Dislipidemia + aterosclerose espontânea</div>
+            <div class="item">Útil para estudos cardiovasculares</div>
+          </div>
+        </div>
+
+        <div class="alert">
+          <div class="alert-title">Atenção — erros conceituais comuns</div>
+          <div class="alert-item">→ Dietas obesogênicas (high-fat, frutose, cafeteria) NÃO induzem diabetes tipo 1 — induzem DM2 associado à obesidade.</div>
+          <div class="alert-item">→ Lesão do núcleo ventromedial (NVM) por MSG: restrita aos primeiros dias de vida (via SC, 4mg/g, 5 dias). Não é aplicável em qualquer fase da vida.</div>
+          <div class="alert-item">→ Lesão elétrica NVM: 1,2 mA × 4s, repetida 3× em intervalos de 30s, sob anestesia geral. Também restrita à fase neonatal/lactação.</div>
+          <div class="alert-item">→ Ovariectomia simula menopausa — modelo válido para fêmeas adultas, não para qualquer fase da vida.</div>
+          <div class="alert-item">→ High-fat pode induzir obesidade OU dislipidemia dependendo do tempo de administração (curto = dislipidemia; longo = obesidade).</div>
+          <div class="alert-item">→ Grande ninhada (16 filhotes) → desnutrição por competição. Pequena ninhada (3 filhotes) → supernutrição/obesidade.</div>
+          <div class="alert-item">→ STZ é usada para diabetes tipo 1 — NÃO para hipertensão. L-NAME é para hipertensão.</div>
+        </div>
+      </div>
+
+      <!-- TAB: VIAS -->
+      <div class="panel" id="tab-vias">
+        <div class="sec-title"><span class="dot" style="background:#993C1D"></span>Vias de administração — quando usar cada uma</div>
+
+        <div class="grid3">
+          <div class="card">
+            <div class="card-title" style="color:#712B13">Gavagem (sonda orogástrica)</div>
+            <div class="item">Dose exata e controlada individualmente</div>
+            <div class="item">Substâncias com sabor desagradável</div>
+            <div class="item">Protocolos que exigem controle rigoroso</div>
+            <div class="item">Ex: sucos, extratos, probióticos, chás medicinais</div>
+            <div class="item">Gaiola coletiva: substância vai por gavagem, não na ração</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#3C3489">Incorporada na dieta</div>
+            <div class="item">Substância misturada na ração (pellets)</div>
+            <div class="item">Substância palatável e estável na matriz alimentar</div>
+            <div class="item">Dose estimada pelo consumo de ração</div>
+            <div class="item">Gaiola individual: permite controle por animal</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#085041">Bebedouro (água de beber)</div>
+            <div class="item">Substância diluída na água</div>
+            <div class="item">Substância palatável, estável em solução aquosa</div>
+            <div class="item">Dose estimada pelo consumo hídrico</div>
+            <div class="item">Risco: rejeição pelo sabor ou instabilidade</div>
+          </div>
+        </div>
+
+        <div class="tip">
+          <div class="tip-title">Regra prática — como decidir a via</div>
+          <div class="tip-item">→ Se a substância tem sabor amargo/desagradável ou se o estudo exige dose precisa → sempre gavagem.</div>
+          <div class="tip-item">→ Sucos, chás, kombucha e bebidas fermentadas em animais doentes (ex: diabéticos) → gavagem (não bebedouro), pois o animal pode rejeitar ou consumir quantidade variável.</div>
+          <div class="tip-item">→ Bebedouro é válido para substâncias saborizadas e palatáveis, sem exigência de dose exata.</div>
+          <div class="tip-item">→ Teste de tolerância à insulina (TTI): jejum 8h + insulina IP ou SC (0,75 UI/kg) + leitura glicemia em 0, 15, 30, 60, 90, 120 min.</div>
+        </div>
+
+        <div class="alert">
+          <div class="alert-title">Atenção — erros na escolha da via</div>
+          <div class="alert-item">→ Sucos e chás medicinais em ratos diabéticos: a via indicada é a gavagem, NÃO o bebedouro ou a dieta — o animal diabético bebe mais água, o que distorceria a dose.</div>
+          <div class="alert-item">→ Kombucha e outras bebidas fermentadas: mesma lógica — gavagem para controle de dose.</div>
+          <div class="alert-item">→ Substância teste em gaiola coletiva: impossível controlar consumo individual — usar gavagem para garantir dose por animal.</div>
+        </div>
+      </div>
+
+      <!-- TAB: AVALIAÇÕES -->
+      <div class="panel" id="tab-avals">
+        <div class="sec-title"><span class="dot" style="background:#185FA5"></span>Avaliações experimentais por domínio</div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title" style="color:#0C447C">Metabolismo glicídico</div>
+            <div class="item">Glicemia de jejum (padrão básico)</div>
+            <div class="item">Insulinemia sérica</div>
+            <div class="item">HOMA-IR (resistência à insulina)</div>
+            <div class="item">TTG — teste de tolerância oral à glicose</div>
+            <div class="item">TTI — teste de tolerância à insulina (jejum 8h, 0,75 UI/kg IP ou SC)</div>
+            <div class="item">Na urina: glicosúria, pH, acidez (DM)</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#712B13">Inflamação</div>
+            <div class="item">Citocinas no tecido (IL-6, TNF-α, interleucinas) — mais fidedigno para inflamação local (in loco)</div>
+            <div class="item">PCR (proteína C reativa) sérica — marcador sistêmico</div>
+            <div class="item">Alfaglicoproteína ácida sérica</div>
+            <div class="item">Para obesidade: citocinas no tecido adiposo são preferíveis à PCR sérica para análise local</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#633806">Estresse oxidativo</div>
+            <div class="item">SOD (superóxido dismutase) — enzima antioxidante</div>
+            <div class="item">GPx (glutationa peroxidase) — enzima antioxidante</div>
+            <div class="item">Catalase — enzima antioxidante</div>
+            <div class="item">MDA (malondialdeído) — peroxidação lipídica</div>
+            <div class="item">CAT (capacidade antioxidante total) sérica</div>
+            <div class="item">Análise enzimática no tecido-alvo é mais fidedigna que MDA sérico para estresse oxidativo local</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#085041">Microbiota e saúde intestinal</div>
+            <div class="item">Sequenciamento rRNA 16S (padrão-ouro para composição da microbiota)</div>
+            <div class="item">Ácidos orgânicos (acético, butírico, propiônico) nas fezes e intestino</div>
+            <div class="item">Esses ácidos também podem ser dosados no cérebro (atravessam barreiras intestinal e hematoencefálica)</div>
+            <div class="item">Histologia do intestino (morfologia, cripta, vilosidade)</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#3C3489">Avaliação hepática</div>
+            <div class="item">TGO e TGP (transaminases) — lesão hepatocelular</div>
+            <div class="item">Histologia hepática (esteatose, fibrose)</div>
+            <div class="item">Colesterol e triglicerídeos hepáticos</div>
+            <div class="item">Ácidos graxos, ácidos biliares nas fezes/fígado (dislipidemia)</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#3C3489">Avaliação renal e pressórica</div>
+            <div class="item">Pletismografia (invasiva, canulação femoral) — mais sensível</div>
+            <div class="item">Tail-cuff (não invasiva, cauda) — menos sensível</div>
+            <div class="item">Hipertenso: PA caudal ≥ 150 mmHg</div>
+            <div class="item">Volume urinário (gaiola metabólica) — influenciado pela ingestão hídrica</div>
+            <div class="item">Histologia renal e vascular</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#633806">Comportamento</div>
+            <div class="item">Sempre mais de um teste para confirmar comportamento</div>
+            <div class="item">Campo Aberto — locomoção, exploração, ansiedade</div>
+            <div class="item">Splash teste (esguicho de sacarose) — autolimpeza (grooming)</div>
+            <div class="item">Parâmetros: grooming, freezing, defecação, tempo em área central</div>
+            <div class="item">Duração padrão: 5 minutos por teste</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#085041">Composição corporal e adiposidade</div>
+            <div class="item">IMC (peso/comprimento²) — obesos: > 0,68 g/cm²</div>
+            <div class="item">Índice de Lee — obesos: > 0,30</div>
+            <div class="item">Índice de adiposidade (% gordura corporal)</div>
+            <div class="item">Peso relativo dos órgãos / peso corporal</div>
+            <div class="item">Composição corporal (nitrogênio de carcaça)</div>
+            <div class="item">Circunferências abdominal e torácica</div>
+          </div>
+        </div>
+
+        <div class="alert">
+          <div class="alert-title">Atenção — o que avaliar em cada modelo</div>
+          <div class="alert-item">→ Diabetes tipo 1: prioridade em glicemia, insulinemia, histologia pancreática, renal e ocular, urinálise. Índice de adiposidade e gordura hepática NÃO são primordiais neste modelo.</div>
+          <div class="alert-item">→ Dislipidemia: histologia hepática, lipídios séricos, lipídios totais + AG + ácidos biliares + TG nas fezes e no fígado são essenciais.</div>
+          <div class="alert-item">→ Hipertensão: PA, histologia renal/vascular, função endotelial. Gordura hepática e índice de adiposidade não são primordiais.</div>
+          <div class="alert-item">→ Volume urinário NÃO é padrão-ouro isolado — sofre influência direta da ingestão hídrica. Deve ser interpretado em conjunto com outros parâmetros.</div>
+        </div>
+      </div>
+
+      <!-- TAB: BIOTÉRIO -->
+      <div class="panel" id="tab-biot">
+        <div class="sec-title"><span class="dot" style="background:#993556"></span>Biotério — macro e microambiente</div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title" style="color:#72243E">Macroambiente (sala/instalação)</div>
+            <div class="item">Temperatura: 20 ± 2°C</div>
+            <div class="item">Umidade relativa: 40–60%</div>
+            <div class="item">Fotoperíodo: 12h claro / 12h escuro (temporizador)</div>
+            <div class="item">Roedores: hábitos noturnos — sono diurno</div>
+            <div class="item">Ventilação: 15–25 trocas de ar/hora</div>
+            <div class="item">Ruído excessivo: estresse, alterações metabólicas, redução da fertilidade</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#72243E">Microambiente (gaiola)</div>
+            <div class="item">Gaiola coletiva: máx. 5 ratos · consumo médio do grupo</div>
+            <div class="item">Gaiola individual convencional: consumo individual · sem coleta urina/fezes separada</div>
+            <div class="item">Gaiola metabólica: consumo individual + coleta de urina + coleta de fezes separadas</div>
+            <div class="item">Cama: maravalha, serragem · troca ~2 dias</div>
+            <div class="item">Bebedouro: ad libitum · lavar diariamente</div>
+          </div>
+        </div>
+
+        <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Identificação obrigatória das gaiolas</div>
+        <div class="card" style="margin-bottom:10px">
+          <div class="item">Grupo experimental e número de animais</div>
+          <div class="item">Sexo e data de nascimento dos animais</div>
+          <div class="item">Data de início do experimento</div>
+          <div class="item">Tipo de dieta oferecida</div>
+          <div class="item">Informação sobre gestação (quando aplicável)</div>
+          <div class="item">Nome dos responsáveis pelo experimento</div>
+        </div>
+
+        <div class="sec-title"><span class="dot" style="background:#3B6D11"></span>Tipos de gaiola — quando usar cada uma</div>
+        <div class="grid3">
+          <div class="card">
+            <div class="card-title" style="color:#27500A">Coletiva (caixa)</div>
+            <div class="item">Até 5 animais/gaiola</div>
+            <div class="item">Consumo médio do grupo</div>
+            <div class="item">Substância teste: sempre por gavagem</div>
+            <div class="item">Não permite coleta individual de urina/fezes</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#27500A">Individual convencional</div>
+            <div class="item">1 animal</div>
+            <div class="item">Consumo individual exato</div>
+            <div class="item">Substância: gavagem ou incorporada na dieta</div>
+            <div class="item">Não permite coleta de urina/fezes separada</div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color:#27500A">Metabólica</div>
+            <div class="item">1 animal</div>
+            <div class="item">Consumo individual exato</div>
+            <div class="item">Coleta de urina e fezes separadas</div>
+            <div class="item">Necessária para estudos de função renal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: QUIZ -->
+      <div class="panel" id="tab-quiz">
+        <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Mini-quiz de revisão</div>
+        <div id="quiz-wrap"></div>
+        <div class="q-nav">
+          <button onclick="prevQ()" style="font-size:12px">← anterior</button>
+          <div>
+            <span id="q-counter">1 / 10</span>
+            <div class="prog" id="prog" style="margin-top:4px"></div>
+          </div>
+          <button onclick="nextQ()" style="font-size:12px">próxima →</button>
+        </div>
+      </div>
+
+      <footer>
+        Amanda Magalhães • Monitoria de Nutrição Experimental<br>
+        Profa. Dra. Jailane Aquino<br>
+        Universidade Federal da Paraíba (UFPB) • 2026
+      </footer>
+    </div>
   </div>
-</div>
-
-
-<div class="tabs">
-  <div class="tab active" onclick="showTab('dietas')">Dietas</div>
-  <div class="tab" onclick="showTab('modelos')">Modelos experimentais</div>
-  <div class="tab" onclick="showTab('vias')">Vias de administração</div>
-  <div class="tab" onclick="showTab('avals')">Avaliações</div>
-  <div class="tab" onclick="showTab('biot')">Biotério</div>
-  <div class="tab" onclick="showTab('quiz')">Mini-quiz</div>
-</div>
-
-<!-- TAB: DIETAS -->
-<div class="panel active" id="tab-dietas">
-  <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Dietas para roedores</div>
-
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title" style="color:#3C3489">Ração comercial</div>
-      <div class="item">Composição variável entre lotes</div>
-      <div class="item">Usada em estudos sem manipulação dietética</div>
-      <div class="item">Não permite controle preciso de nutrientes</div>
-      <div class="item">Menor custo e praticidade</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#085041">Dietas AIN (American Institute of Nutrition)</div>
-      <div class="item">Composição química definida e reprodutível</div>
-      <div class="item">Usadas quando a dieta é variável do estudo</div>
-      <div class="item">Permitem adicionar/remover nutrientes com precisão</div>
-      <div class="item">Preparadas no próprio laboratório</div>
-    </div>
-  </div>
-
- <div class="tip">
-  <div class="tip-title">Dietas AIN-93G e AIN-93M</div>
-
-  <div class="tip-item">
-    As dietas AIN-93 são dietas purificadas, quimicamente definidas, amplamente utilizadas em estudos experimentais com roedores.
-  </div>
-
-  <div class="tip-item">
-    A dieta <strong>AIN-93G</strong> é indicada para fases de crescimento, sendo utilizada em <strong>filhotes, gestantes e lactantes</strong>, pois apresenta maior densidade energética e maior teor de nutrientes necessários ao desenvolvimento.
-  </div>
-
-  <div class="tip-item">
-    Já a dieta <strong>AIN-93M</strong> é destinada à fase de manutenção, sendo utilizada em animais adultos, com composição ajustada para manter o organismo sem promover crescimento.
-  </div>
-
-  <div class="tip-item">
-    Em relação à composição, <strong>ambas as dietas apresentam a mesma quantidade de celulose</strong>, diferindo principalmente nos teores de proteínas, lipídios e carboidratos, conforme as demandas fisiológicas de cada fase.
-  </div>
-</div>
-
-<p>
-As dietas AIN-93 são dietas purificadas, quimicamente definidas, amplamente utilizadas em estudos experimentais com roedores.
-</p>
-
-<p>
-A dieta <strong>AIN-93G</strong> é indicada para fases de crescimento, sendo utilizada em <strong>filhotes, gestantes e lactantes</strong>, pois apresenta maior densidade energética e maior teor de nutrientes necessários ao desenvolvimento.
-</p>
-
-<p>
-Já a dieta <strong>AIN-93M</strong> é destinada à fase de manutenção, sendo utilizada em animais adultos, com composição ajustada para manter o organismo sem promover crescimento.
-</p>
-
-<p>
-Em relação à composição, <strong>ambas as dietas apresentam a mesma quantidade de celulose</strong>, diferindo principalmente nos teores de proteínas, lipídios e carboidratos, conforme as demandas fisiológicas de cada fase.
-</p>
-
-<div class="tip">
-  <div class="tip-title">Pontos essenciais sobre as dietas AIN-93</div>
-
-  <div class="tip-item">
-    → A quantidade de óleo de soja é a MESMA nas duas dietas (G e M) — o que difere é a composição de proteínas, lipídios totais, fósforo e carboidratos, mantendo a mesma quantidade de fibras.
-  </div>
-
-  <div class="tip-item">
-    → AIN-76A apresentava maior teor de sacarose e menor quantidade de óleo (5% de óleo de milho), enquanto as dietas AIN-93 utilizam óleo de soja, com variação na quantidade: cerca de 7% na AIN-93M e 4% na AIN-93G.
-  </div>
-
-  <div class="tip-item">
-    → A substituição do óleo de milho pelo óleo de soja nas dietas AIN-93 se deve ao melhor perfil lipídico, especialmente na razão ω-6:ω-3 (7:1) e PUFA:saturado (4:1).
-  </div>
-
-  <div class="tip-item">
-    → A caseína é a fonte proteica padrão — disponível, de baixo custo e bem estudada. Suplementa-se L-cistina por ser deficiente nela.
-  </div>
-
-  <div class="tip-item">
-    → Perfil de carboidratos: ambas têm sacarose + amido de milho + amido dextrinizado — o que varia é a proporção entre os amidos.
-  </div>
- <div class="tip">
-  <div class="tip-title">Atenção — dúvidas frequentes sobre dietas</div>
-
-  <div class="tip-item">
-    → AIN-93G ≠ AIN-93M não apenas em lipídios — diferem em proteína, lipídio, fósforo e carboidratos, <strong>porém apresentam a mesma quantidade de fibras (celulose)</strong>.
-  </div>
-
-  <div class="tip-item">
-    → AIN-76A apresentava <strong>maior teor de sacarose e menor quantidade de óleo</strong> (5% de óleo de milho), enquanto as dietas AIN-93 utilizam <strong>óleo de soja</strong>, com variação na quantidade: cerca de 7% na AIN-93M e 4% na AIN-93G.
-  </div>
-
-  <div class="tip-item">
-    → A substituição do óleo de milho pelo óleo de soja nas dietas AIN-93 se deve ao melhor perfil lipídico, especialmente na razão ω-6:ω-3 (7:1) e PUFA:saturado (4:1).
-  </div>
-
-  <div class="tip-item">
-    → O aminoácido suplementado na AIN-93 é a L-cistina, devido à limitação da caseína em aminoácidos sulfurados.
-  </div>
-
-  <div class="tip-item">
-    → Consumo alimentar: a periodicidade da avaliação depende do delineamento do estudo, não sendo obrigatoriamente diária.
-  </div>
-</div>
-
-</div>
-
-<!-- TAB: MODELOS -->
-<div class="panel" id="tab-modelos">
-  <div class="sec-title"><span class="dot" style="background:#0F6E56"></span>Modelos de indução — visão geral</div>
-
-  <div class="method-grid">
-    <div class="method-card" style="background:#F0FAF6;border-color:#5DCAA5">
-      <div class="method-title" style="color:#085041">Desnutrição</div>
-      <div class="method-item">Perinatal: lig. mamas, lig. artéria uterina, separação filhotes, grandes ninhadas (16)</div>
-      <div class="method-item">Qualquer fase: DBR, gelatina (baixa qualidade prot.), restrição calórica (35–65%)</div>
-    </div>
-    <div class="method-card" style="background:#F0FAF6;border-color:#5DCAA5">
-      <div class="method-title" style="color:#085041">Obesidade</div>
-      <div class="method-item">Dietético: cafeteria, ocidentalizada, hiperlipídica, hipercalórica</div>
-      <div class="method-item">Neuroendócrino: MSG (1ª semana de vida), lesão elétrica NVM</div>
-      <div class="method-item">Cirúrgico: ovariectomia (fêmeas adultas → menopausa)</div>
-      <div class="method-item">Genético: ob/ob, Zucker, Camundongo amarelo</div>
-    </div>
-    <div class="method-card" style="background:#FEF6F3;border-color:#F0997B">
-      <div class="method-title" style="color:#712B13">Diabetes tipo 1</div>
-      <div class="method-item">Químico: Aloxana (EV 42mg/kg ou IP 120mg/kg) ou STZ (EV/IP 50–60mg/kg) após jejum 24h</div>
-      <div class="method-item">Genético: camundongo NOD, rato BB</div>
-    </div>
-    <div class="method-card" style="background:#FEF6F3;border-color:#F0997B">
-      <div class="method-title" style="color:#712B13">Diabetes tipo 2</div>
-      <div class="method-item">Dietético: dieta hiperlipídica (high-fat) por tempo prolongado → resistência insulínica</div>
-      <div class="method-item">Genético: ob/ob, Zucker (ambos também desenvolvem DM2 associado à obesidade)</div>
-    </div>
-    <div class="method-card" style="background:#EDF4FE;border-color:#85B7EB">
-      <div class="method-title" style="color:#0C447C">Hipertensão</div>
-      <div class="method-item">Cirúrgico: nefrectomia bilateral + NaCl 1% (mais estudado, simula fisiopatologia humana); estenose artéria renal (Goldblatt)</div>
-      <div class="method-item">Químico: L-NAME (inibe NO-sintase); DOCA-sal (animais jovens)</div>
-      <div class="method-item">Genético: SHR (7ª–15ª sem.); ratos Dahl sensíveis ao sal</div>
-    </div>
-    <div class="method-card" style="background:#FDF6E6;border-color:#EF9F27">
-      <div class="method-title" style="color:#633806">Dislipidemia</div>
-      <div class="method-item">Dietético: high-fat + banha + colesterol + ácido cólico (10%, 1%, 0,1%)</div>
-      <div class="method-item">Químico: Triton IP 100mg/kg (hipercolest.); Poloxamer IP 300–500mg/kg</div>
-      <div class="method-item">Genético: camundongo ApoE–/– (aterosclerose espontânea)</div>
-    </div>
-  </div>
-
-  <div class="sec-title"><span class="dot" style="background:#993C1D"></span>Modelos genéticos — detalhes importantes</div>
-  <div class="grid3">
-    <div class="card">
-      <div class="card-title" style="color:#712B13">Camundongo ob/ob</div>
-      <div class="item">Mutação cromossomo 6</div>
-      <div class="item">Ausência de síntese de leptina</div>
-      <div class="item">Fenótipo: hiperfágico, obeso, diabético (DM2)</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#712B13">Rato Zucker</div>
-      <div class="item">Mutação no receptor de leptina</div>
-      <div class="item">Leptina produzida, mas não reconhecida</div>
-      <div class="item">Fenótipo: hiperfágico, obeso, diabético (DM2)</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#712B13">Camundongo amarelo</div>
-      <div class="item">Mutação cromossomo 2</div>
-      <div class="item">Excesso proteína agouti → resposta orexígena</div>
-      <div class="item">Fenótipo: hiperfagia, obesidade</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#0C447C">Camundongo NOD</div>
-      <div class="item">Destruição autoimune células beta</div>
-      <div class="item">Diabetes tipo 1 espontâneo</div>
-      <div class="item">Sintomas: glicemia > 250mg/dL, glicosúria</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#0C447C">Rato BB (Biobreeding)</div>
-      <div class="item">Ausência células T, insulite espontânea</div>
-      <div class="item">Sintomas por volta de 12 semanas</div>
-      <div class="item">DM1 com cetoacidose, polidipsia, poliúria</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#633806">Camundongo ApoE–/–</div>
-      <div class="item">Sem proteína apolipoproteína E</div>
-      <div class="item">Dislipidemia + aterosclerose espontânea</div>
-      <div class="item">Útil para estudos cardiovasculares</div>
-    </div>
-  </div>
-
-  <div class="alert">
-    <div class="alert-title">Atenção — erros conceituais comuns</div>
-    <div class="alert-item">→ Dietas obesogênicas (high-fat, frutose, cafeteria) NÃO induzem diabetes tipo 1 — induzem DM2 associado à obesidade.</div>
-    <div class="alert-item">→ Lesão do núcleo ventromedial (NVM) por MSG: restrita aos primeiros dias de vida (via SC, 4mg/g, 5 dias). Não é aplicável em qualquer fase da vida.</div>
-    <div class="alert-item">→ Lesão elétrica NVM: 1,2 mA × 4s, repetida 3× em intervalos de 30s, sob anestesia geral. Também restrita à fase neonatal/lactação.</div>
-    <div class="alert-item">→ Ovariectomia simula menopausa — modelo válido para fêmeas adultas, não para qualquer fase da vida.</div>
-    <div class="alert-item">→ High-fat pode induzir obesidade OU dislipidemia dependendo do tempo de administração (curto = dislipidemia; longo = obesidade).</div>
-    <div class="alert-item">→ Grande ninhada (16 filhotes) → desnutrição por competição. Pequena ninhada (3 filhotes) → supernutrição/obesidade.</div>
-    <div class="alert-item">→ STZ é usada para diabetes tipo 1 — NÃO para hipertensão. L-NAME é para hipertensão.</div>
-  </div>
-</div>
-
-<!-- TAB: VIAS -->
-<div class="panel" id="tab-vias">
-  <div class="sec-title"><span class="dot" style="background:#993C1D"></span>Vias de administração — quando usar cada uma</div>
-
-  <div class="grid3">
-    <div class="card">
-      <div class="card-title" style="color:#712B13">Gavagem (sonda orogástrica)</div>
-      <div class="item">Dose exata e controlada individualmente</div>
-      <div class="item">Substâncias com sabor desagradável</div>
-      <div class="item">Protocolos que exigem controle rigoroso</div>
-      <div class="item">Ex: sucos, extratos, probióticos, chás medicinais</div>
-      <div class="item">Gaiola coletiva: substância vai por gavagem, não na ração</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#3C3489">Incorporada na dieta</div>
-      <div class="item">Substância misturada na ração (pellets)</div>
-      <div class="item">Substância palatável e estável na matriz alimentar</div>
-      <div class="item">Dose estimada pelo consumo de ração</div>
-      <div class="item">Gaiola individual: permite controle por animal</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#085041">Bebedouro (água de beber)</div>
-      <div class="item">Substância diluída na água</div>
-      <div class="item">Substância palatável, estável em solução aquosa</div>
-      <div class="item">Dose estimada pelo consumo hídrico</div>
-      <div class="item">Risco: rejeição pelo sabor ou instabilidade</div>
-    </div>
-  </div>
-
-  <div class="tip">
-    <div class="tip-title">Regra prática — como decidir a via</div>
-    <div class="tip-item">→ Se a substância tem sabor amargo/desagradável ou se o estudo exige dose precisa → sempre gavagem.</div>
-    <div class="tip-item">→ Sucos, chás, kombucha e bebidas fermentadas em animais doentes (ex: diabéticos) → gavagem (não bebedouro), pois o animal pode rejeitar ou consumir quantidade variável.</div>
-    <div class="tip-item">→ Bebedouro é válido para substâncias saborizadas e palatáveis, sem exigência de dose exata.</div>
-    <div class="tip-item">→ Teste de tolerância à insulina (TTI): jejum 8h + insulina IP ou SC (0,75 UI/kg) + leitura glicemia em 0, 15, 30, 60, 90, 120 min.</div>
-  </div>
-
-  <div class="alert">
-    <div class="alert-title">Atenção — erros na escolha da via</div>
-    <div class="alert-item">→ Sucos e chás medicinais em ratos diabéticos: a via indicada é a gavagem, NÃO o bebedouro ou a dieta — o animal diabético bebe mais água, o que distorceria a dose.</div>
-    <div class="alert-item">→ Kombucha e outras bebidas fermentadas: mesma lógica — gavagem para controle de dose.</div>
-    <div class="alert-item">→ Substância teste em gaiola coletiva: impossível controlar consumo individual — usar gavagem para garantir dose por animal.</div>
-  </div>
-</div>
-
-<!-- TAB: AVALIAÇÕES -->
-<div class="panel" id="tab-avals">
-  <div class="sec-title"><span class="dot" style="background:#185FA5"></span>Avaliações experimentais por domínio</div>
-
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title" style="color:#0C447C">Metabolismo glicídico</div>
-      <div class="item">Glicemia de jejum (padrão básico)</div>
-      <div class="item">Insulinemia sérica</div>
-      <div class="item">HOMA-IR (resistência à insulina)</div>
-      <div class="item">TTG — teste de tolerância oral à glicose</div>
-      <div class="item">TTI — teste de tolerância à insulina (jejum 8h, 0,75 UI/kg IP ou SC)</div>
-      <div class="item">Na urina: glicosúria, pH, acidez (DM)</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#712B13">Inflamação</div>
-      <div class="item">Citocinas no tecido (IL-6, TNF-α, interleucinas) — mais fidedigno para inflamação local (in loco)</div>
-      <div class="item">PCR (proteína C reativa) sérica — marcador sistêmico</div>
-      <div class="item">Alfaglicoproteína ácida sérica</div>
-      <div class="item">Para obesidade: citocinas no tecido adiposo são preferíveis à PCR sérica para análise local</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#633806">Estresse oxidativo</div>
-      <div class="item">SOD (superóxido dismutase) — enzima antioxidante</div>
-      <div class="item">GPx (glutationa peroxidase) — enzima antioxidante</div>
-      <div class="item">Catalase — enzima antioxidante</div>
-      <div class="item">MDA (malondialdeído) — peroxidação lipídica</div>
-      <div class="item">CAT (capacidade antioxidante total) sérica</div>
-      <div class="item">Análise enzimática no tecido-alvo é mais fidedigna que MDA sérico para estresse oxidativo local</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#085041">Microbiota e saúde intestinal</div>
-      <div class="item">Sequenciamento rRNA 16S (padrão-ouro para composição da microbiota)</div>
-      <div class="item">Ácidos orgânicos (acético, butírico, propiônico) nas fezes e intestino</div>
-      <div class="item">Esses ácidos também podem ser dosados no cérebro (atravessam barreiras intestinal e hematoencefálica)</div>
-      <div class="item">Histologia do intestino (morfologia, cripta, vilosidade)</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#3C3489">Avaliação hepática</div>
-      <div class="item">TGO e TGP (transaminases) — lesão hepatocelular</div>
-      <div class="item">Histologia hepática (esteatose, fibrose)</div>
-      <div class="item">Colesterol e triglicerídeos hepáticos</div>
-      <div class="item">Ácidos graxos, ácidos biliares nas fezes/fígado (dislipidemia)</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#3C3489">Avaliação renal e pressórica</div>
-      <div class="item">Pletismografia (invasiva, canulação femoral) — mais sensível</div>
-      <div class="item">Tail-cuff (não invasiva, cauda) — menos sensível</div>
-      <div class="item">Hipertenso: PA caudal ≥ 150 mmHg</div>
-      <div class="item">Volume urinário (gaiola metabólica) — influenciado pela ingestão hídrica</div>
-      <div class="item">Histologia renal e vascular</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#633806">Comportamento</div>
-      <div class="item">Sempre mais de um teste para confirmar comportamento</div>
-      <div class="item">Campo Aberto — locomoção, exploração, ansiedade</div>
-      <div class="item">Splash teste (esguicho de sacarose) — autolimpeza (grooming)</div>
-      <div class="item">Parâmetros: grooming, freezing, defecação, tempo em área central</div>
-      <div class="item">Duração padrão: 5 minutos por teste</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#085041">Composição corporal e adiposidade</div>
-      <div class="item">IMC (peso/comprimento²) — obesos: > 0,68 g/cm²</div>
-      <div class="item">Índice de Lee — obesos: > 0,30</div>
-      <div class="item">Índice de adiposidade (% gordura corporal)</div>
-      <div class="item">Peso relativo dos órgãos / peso corporal</div>
-      <div class="item">Composição corporal (nitrogênio de carcaça)</div>
-      <div class="item">Circunferências abdominal e torácica</div>
-    </div>
-  </div>
-
-  <div class="alert">
-    <div class="alert-title">Atenção — o que avaliar em cada modelo</div>
-    <div class="alert-item">→ Diabetes tipo 1: prioridade em glicemia, insulinemia, histologia pancreática, renal e ocular, urinálise. Índice de adiposidade e gordura hepática NÃO são primordiais neste modelo.</div>
-    <div class="alert-item">→ Dislipidemia: histologia hepática, lipídios séricos, lipídios totais + AG + ácidos biliares + TG nas fezes e no fígado são essenciais.</div>
-    <div class="alert-item">→ Hipertensão: PA, histologia renal/vascular, função endotelial. Gordura hepática e índice de adiposidade não são primordiais.</div>
-    <div class="alert-item">→ Volume urinário NÃO é padrão-ouro isolado — sofre influência direta da ingestão hídrica. Deve ser interpretado em conjunto com outros parâmetros.</div>
-  </div>
-</div>
-
-<!-- TAB: BIOTÉRIO -->
-<div class="panel" id="tab-biot">
-  <div class="sec-title"><span class="dot" style="background:#993556"></span>Biotério — macro e microambiente</div>
-
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title" style="color:#72243E">Macroambiente (sala/instalação)</div>
-      <div class="item">Temperatura: 20 ± 2°C</div>
-      <div class="item">Umidade relativa: 40–60%</div>
-      <div class="item">Fotoperíodo: 12h claro / 12h escuro (temporizador)</div>
-      <div class="item">Roedores: hábitos noturnos — sono diurno</div>
-      <div class="item">Ventilação: 15–25 trocas de ar/hora</div>
-      <div class="item">Ruído excessivo: estresse, alterações metabólicas, redução da fertilidade</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#72243E">Microambiente (gaiola)</div>
-      <div class="item">Gaiola coletiva: máx. 5 ratos · consumo médio do grupo</div>
-      <div class="item">Gaiola individual convencional: consumo individual · sem coleta urina/fezes separada</div>
-      <div class="item">Gaiola metabólica: consumo individual + coleta de urina + coleta de fezes separadas</div>
-      <div class="item">Cama: maravalha, serragem · troca ~2 dias</div>
-      <div class="item">Bebedouro: ad libitum · lavar diariamente</div>
-    </div>
-  </div>
-
-  <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Identificação obrigatória das gaiolas</div>
-  <div class="card" style="margin-bottom:10px">
-    <div class="item">Grupo experimental e número de animais</div>
-    <div class="item">Sexo e data de nascimento dos animais</div>
-    <div class="item">Data de início do experimento</div>
-    <div class="item">Tipo de dieta oferecida</div>
-    <div class="item">Informação sobre gestação (quando aplicável)</div>
-    <div class="item">Nome dos responsáveis pelo experimento</div>
-  </div>
-
-  <div class="sec-title"><span class="dot" style="background:#3B6D11"></span>Tipos de gaiola — quando usar cada uma</div>
-  <div class="grid3">
-    <div class="card">
-      <div class="card-title" style="color:#27500A">Coletiva (caixa)</div>
-      <div class="item">Até 5 animais/gaiola</div>
-      <div class="item">Consumo médio do grupo</div>
-      <div class="item">Substância teste: sempre por gavagem</div>
-      <div class="item">Não permite coleta individual de urina/fezes</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#27500A">Individual convencional</div>
-      <div class="item">1 animal</div>
-      <div class="item">Consumo individual exato</div>
-      <div class="item">Substância: gavagem ou incorporada na dieta</div>
-      <div class="item">Não permite coleta de urina/fezes separada</div>
-    </div>
-    <div class="card">
-      <div class="card-title" style="color:#27500A">Metabólica</div>
-      <div class="item">1 animal</div>
-      <div class="item">Consumo individual exato</div>
-      <div class="item">Coleta de urina e fezes separadas</div>
-      <div class="item">Necessária para estudos de função renal</div>
-    </div>
-  </div>
-</div>
-
-<!-- TAB: QUIZ -->
-<div class="panel" id="tab-quiz">
-  <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Mini-quiz de revisão</div>
-  <div id="quiz-wrap"></div>
-  <div class="q-nav">
-    <button onclick="prevQ()" style="font-size:12px">← anterior</button>
-    <div>
-      <span id="q-counter" style="font-size:11px;color:var(--color-text-tertiary)">1 / 10</span>
-      <div class="prog" id="prog" style="margin-top:4px"></div>
-    </div>
-    <button onclick="nextQ()" style="font-size:12px">próxima →</button>
-  </div>
-</div>
-
-</div>
 
 <script>
 function showTab(id){
+  const ids=['dietas','modelos','vias','avals','biot','quiz'];
   document.querySelectorAll('.tab').forEach((t,i)=>{
-    const ids=['dietas','modelos','vias','avals','biot','quiz'];
     t.classList.toggle('active',ids[i]===id);
   });
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -604,16 +614,16 @@ function showTab(id){
 }
 
 const QS=[
-  {q:"Qual a principal diferença nutricional entre as dietas AIN-93G e AIN-93M?",opts:["Diferem apenas na quantidade de óleo de soja","Diferem em proteína, lipídios, fósforo e fibra","São idênticas, diferindo apenas no amido","Diferem apenas no teor de carboidratos"],ans:1,fb:"As dietas AIN-93G e AIN-93M diferem em proteína (20% vs 14%), lipídios (7% vs 4%), fósforo e fibra. A quantidade de óleo de soja é a mesma nas duas."},
+  {q:"Qual a principal diferença nutricional entre as dietas AIN-93G e AIN-93M?",opts:["Diferem apenas na quantidade de celulose","Diferem em proteína, lipídios, fósforo e carboidratos, mantendo a mesma quantidade de fibras","São idênticas, diferindo apenas no amido","Diferem apenas no teor de carboidratos"],ans:1,fb:"As dietas AIN-93G e AIN-93M diferem em proteína, lipídios, fósforo e carboidratos. Ambas mantêm a mesma quantidade de celulose (fibra)."},
   {q:"Qual o método químico mais aceito internacionalmente para indução de diabetes tipo 1?",opts:["Aloxana intraperitoneal","Estreptozotocina (STZ)","Poloxamer intravenoso","Triton IP"],ans:1,fb:"A STZ é o método mais aceito internacionalmente por apresentar menor índice de mortalidade em comparação à aloxana. Ambas destroem células beta pancreáticas."},
   {q:"Ratos com pressão arterial caudal ≥ 150 mmHg são considerados:",opts:["Pré-hipertensos","Hipertensos","Normotensos com risco","Hipertensos apenas se associado a doença renal"],ans:1,fb:"O critério para classificar ratos como hipertensos é pressão arterial caudal ≥ 150 mmHg, medida por tail-cuff ou pletismografia."},
-  {q:"Para administrar suco de fruta a ratos diabéticos em estudo experimental, a via mais indicada é:",opts:["Bebedouro (livre acesso)","Incorporado na ração","Gavagem orogástrica","Intraperitoneal"],ans:2,fb:"A gavagem é a via indicada pois garante dose exata por animal. Ratos diabéticos bebem mais água (polidipsia), o que distorceria a dose no bebedouro. Sucos têm sabor que pode ser variável."},
+  {q:"Para administrar suco de fruta a ratos diabéticos em estudo experimental, a via mais indicada é:",opts:["Bebedouro (livre acesso)","Incorporado na ração","Gavagem orogástrica","Intraperitoneal"],ans:2,fb:"A gavagem é a via indicada pois garante dose exata por animal. Ratos diabéticos bebem mais água (polidipsia), o que distorceria a dose no bebedouro."},
   {q:"A técnica das pequenas ninhadas (3 filhotes por ninhada) é usada para induzir:",opts:["Desnutrição perinatal por competição","Obesidade neonatal por supernutrição","Hipertensão na prole","Diabetes tipo 2 precoce"],ans:1,fb:"Com apenas 3 filhotes para uma fêmea com leite abundante, cada filhote recebe excesso de nutrientes, desenvolvendo hiperfagia, obesidade, hiperinsulinemia e resistência periférica ao longo da vida."},
   {q:"Qual modelo genético de obesidade apresenta mutação no receptor de leptina?",opts:["Camundongo ob/ob","Rato Zucker","Camundongo amarelo","Rato NOD"],ans:1,fb:"O rato Zucker apresenta mutação no gene que codifica o receptor de leptina. O ob/ob tem ausência de síntese da leptina em si. O camundongo amarelo tem excesso de proteína agouti."},
-  {q:"Para avaliação de saúde intestinal e microbiota, qual técnica fornece a caracterização mais detalhada da composição da microbiota?",opts:["Técnica de microgota","Cultura bacteriana convencional","Sequenciamento do gene rRNA 16S","PCR simples de fezes"],ans:2,fb:"O sequenciamento de alto rendimento do gene rRNA 16S é considerado o padrão-ouro para caracterização detalhada da composição da microbiota intestinal. A técnica de microgota não oferece o mesmo nível de especificidade."},
-  {q:"A ovariectomia como modelo de obesidade é válida para:",opts:["Fêmeas em qualquer fase da vida","Fêmeas adultas, simulando menopausa","Machos e fêmeas na fase neonatal","Fêmeas jovens durante a puberdade"],ans:1,fb:"A ovariectomia simula a menopausa — a queda nos níveis de estrogênio/leptina leva à hiperfagia e ganho de peso. É um modelo válido para fêmeas adultas, não para qualquer fase da vida."},
-  {q:"Em estudos de dislipidemia, quais análises são primordiais?",opts:["Pressão arterial, histologia renal e gordura visceral","Histologia hepática, lipídios séricos e lipídios/ácidos graxos nas fezes e no fígado","Glicemia, insulinemia e HOMA-IR","IMC, índice de Lee e comportamento ansioso"],ans:1,fb:"Em estudos de dislipidemia, são primordiais: histologia hepática, lipídios séricos (CT, LDL, HDL, TG), e análise de lipídios totais, ácidos graxos, ácidos biliares e triglicerídeos nas fezes e no fígado."},
-  {q:"Qual a gaiola indicada quando o objetivo é coletar urina e fezes separadamente por animal?",opts:["Gaiola coletiva tipo caixa","Gaiola individual convencional","Gaiola metabólica","Qualquer gaiola individual"],ans:2,fb:"Apenas a gaiola metabólica permite a coleta simultânea e separada de urina e fezes por animal, sendo essencial para estudos de função renal, balanço nitrogenado e análise de metabólitos fecais e urinários."}
+  {q:"Para avaliação de saúde intestinal e microbiota, qual técnica fornece a caracterização mais detalhada da composição da microbiota?",opts:["Técnica de microgota","Cultura bacteriana convencional","Sequenciamento do gene rRNA 16S","PCR simples de fezes"],ans:2,fb:"O sequenciamento de alto rendimento do gene rRNA 16S é considerado o padrão-ouro para caracterização detalhada da composição da microbiota intestinal."},
+  {q:"A ovariectomia como modelo de obesidade é válida para:",opts:["Fêmeas em qualquer fase da vida","Fêmeas adultas, simulando menopausa","Machos e fêmeas na fase neonatal","Fêmeas jovens durante a puberdade"],ans:1,fb:"A ovariectomia simula a menopausa. É um modelo válido para fêmeas adultas, não para qualquer fase da vida."},
+  {q:"Em estudos de dislipidemia, quais análises são primordiais?",opts:["Pressão arterial, histologia renal e gordura visceral","Histologia hepática, lipídios séricos e lipídios/ácidos graxos nas fezes e no fígado","Glicemia, insulinemia e HOMA-IR","IMC, índice de Lee e comportamento ansioso"],ans:1,fb:"Em estudos de dislipidemia, são primordiais: histologia hepática, lipídios séricos, e análise de lipídios totais, ácidos graxos, ácidos biliares e triglicerídeos nas fezes e no fígado."},
+  {q:"Qual a gaiola indicada quando o objetivo é coletar urina e fezes separadamente por animal?",opts:["Gaiola coletiva tipo caixa","Gaiola individual convencional","Gaiola metabólica","Qualquer gaiola individual"],ans:2,fb:"Apenas a gaiola metabólica permite a coleta simultânea e separada de urina e fezes por animal."}
 ];
 
 let cur=0,answered=[];
@@ -635,30 +645,7 @@ function answer(i){
 }
 function nextQ(){cur=(cur+1)%QS.length;renderQ();}
 function prevQ(){cur=(cur-1+QS.length)%QS.length;renderQ();}
+renderQ();
 </script>
-
-</div>
-
-<footer style="
-  margin-top: 60px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(180, 150, 200, 0.3);
-  text-align: center;
-  font-size: 12.5px;
-  color: #7a6a8f;
-  opacity: 0.85;
-  line-height: 1.7;
-  letter-spacing: 0.3px;
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-">
-  Amanda Magalhães • Monitoria de Nutrição Experimental<br>
-  Profa. Dra. Jailane Aquino<br>
-  Universidade Federal da Paraíba (UFPB) • 2026
-</footer>
-
 </body>
 </html>
