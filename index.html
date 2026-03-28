@@ -1,196 +1,300 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nutrição Experimental — revisão interativa</title>
-<meta name="theme-color" content="#f6c2d8" />
-<style>
-:root{
-  --bg-1:#fff8fc;
-  --bg-2:#f6f1ff;
-  --bg-3:#eefaf6;
-  --surface:rgba(255,255,255,.82);
-  --surface-strong:#ffffff;
-  --text:#342b4f;
-  --text-soft:#6f6787;
-  --text-faint:#9a92ad;
-  --border:rgba(122,97,177,.16);
-  --shadow:0 18px 50px rgba(111,94,154,.14);
-  --accent:#8f79d6;
-  --accent-2:#f3a8c8;
-  --accent-3:#85cfb4;
-  --blue:#8db8ec;
-  --orange:#f2b37f;
-  --purple-soft:#efe8ff;
-  --pink-soft:#ffe9f3;
-  --green-soft:#ebf9f2;
-  --blue-soft:#edf5ff;
-  --orange-soft:#fff3e7;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutrição Experimental — revisão interativa</title>
+  <meta name="theme-color" content="#f6c2d8" />
+  <style>
+    :root{
+      --bg-1:#fff8fc;
+      --bg-2:#f6f1ff;
+      --bg-3:#eefaf6;
+      --surface:rgba(255,255,255,.82);
+      --text:#342b4f;
+      --text-soft:#6f6787;
+      --text-faint:#9a92ad;
+      --border:rgba(122,97,177,.16);
+      --shadow:0 18px 50px rgba(111,94,154,.14);
+      --accent:#8f79d6;
+      --accent-2:#f3a8c8;
+      --purple-soft:#efe8ff;
+      --green-soft:#ebf9f2;
+      --blue-soft:#edf5ff;
+      --orange-soft:#fff3e7;
+    }
 
-.container{
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 20px;
-}
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:"SF Pro Text","Inter","Avenir Next","Segoe UI",sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(243,168,200,.35), transparent 26%),
-    radial-gradient(circle at top right, rgba(143,121,214,.20), transparent 22%),
-    radial-gradient(circle at 20% 80%, rgba(133,207,180,.22), transparent 20%),
-    linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
-  min-height:100vh;
-  padding:24px 14px 40px;
-}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto}
-.hero{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(135deg, rgba(143,121,214,.94), rgba(243,168,200,.86));
-  border:1px solid rgba(255,255,255,.38);
-  border-radius:28px;
-  padding:26px 24px;
-  margin-bottom:16px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  box-shadow:var(--shadow);
-}
-.hero::before,.hero::after{
-  content:"";
-  position:absolute;
-  border-radius:999px;
-  background:rgba(255,255,255,.16);
-  filter:blur(1px);
-}
-.hero::before{width:170px;height:170px;right:-35px;top:-58px}
-.hero::after{width:120px;height:120px;right:110px;bottom:-42px}
-.hero-icon{
-  width:70px;height:70px;flex-shrink:0;border-radius:22px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:34px;background:rgba(255,255,255,.24);
-  border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(10px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.25);
-}
-.hero h1{color:#fff;font-size:clamp(1.55rem, 3vw, 2.35rem);font-weight:800;line-height:1.05;letter-spacing:-.03em}
-.hero p{color:rgba(255,255,255,.84);font-size:.98rem;margin-top:8px;max-width:700px}
-.top-tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px 0}
-.pill{
-  display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;
-  background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.78);
-  box-shadow:0 8px 20px rgba(111,94,154,.08);font-size:.86rem;color:var(--text-soft);
-  backdrop-filter:blur(10px)
-}
-.tabs{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
-.tab{
-  font-size:.93rem;font-weight:700;padding:12px 18px;border-radius:999px;cursor:pointer;
-  border:1px solid rgba(143,121,214,.16);transition:.22s ease;color:var(--text-soft);
-  background:rgba(255,255,255,.7);backdrop-filter:blur(10px);box-shadow:0 6px 18px rgba(111,94,154,.05)
-}
-.tab:hover{transform:translateY(-1px);border-color:rgba(143,121,214,.28)}
-.tab.active{background:linear-gradient(135deg, #8f79d6, #f3a8c8);color:#fff;border-color:transparent}
-.panel{display:none;animation:fade .24s ease}
-.panel.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.sec-title{font-size:1rem;font-weight:800;color:var(--text);margin:0 0 12px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
-.dot{width:10px;height:10px;border-radius:999px;flex-shrink:0;box-shadow:0 0 0 6px rgba(255,255,255,.55)}
-.grid2,.grid3,.method-grid{display:grid;gap:12px;margin-bottom:16px}
-.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid3,.method-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card,.method-card,.compare-row>div,.alert,.quiz-card{
-  background:var(--surface);backdrop-filter:blur(14px);
-  border:1px solid var(--border);border-radius:24px;padding:16px 16px 14px;
-  box-shadow:0 10px 30px rgba(111,94,154,.08);
-}
-.card-title,.method-title{font-size:.98rem;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
-.item,.method-item,.alert-item{font-size:.92rem;color:var(--text-soft);padding:8px 0;line-height:1.55}
-.item{border-bottom:1px solid rgba(143,121,214,.08);display:flex;align-items:flex-start;gap:8px}
-.item:last-child{border-bottom:none;padding-bottom:0}
-.item::before{content:'✦';color:var(--accent);font-size:.68rem;line-height:1.8;flex-shrink:0}
-.tag,.big-tag{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;padding:5px 10px;border-radius:999px;font-weight:700;margin:2px 6px 6px 0;white-space:nowrap;border:1px solid transparent}
-.tag-p{background:var(--purple-soft);color:#5a49a5;border-color:rgba(90,73,165,.12)}
-.tag-t{background:var(--green-soft);color:#187451;border-color:rgba(24,116,81,.12)}
-.tag-b{background:var(--blue-soft);color:#235f9b;border-color:rgba(35,95,155,.12)}
-.tag-o{background:var(--orange-soft);color:#9b5f22;border-color:rgba(155,95,34,.12)}
-.compare-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}
-.compare-row>div h3,.compare-row>div h4{margin-bottom:8px}
-.alert{background:linear-gradient(180deg, rgba(255,243,231,.9), rgba(255,255,255,.84));margin-bottom:16px}
-.alert-title{font-size:.96rem;font-weight:800;color:#8a4f19;margin-bottom:8px}
-.method-card{padding:14px 14px 12px;border-radius:22px}
-.method-item{font-size:.88rem;padding:3px 0}
-.q-card,.question,.quiz-card{background:var(--surface)}
-#quiz-wrap > div, .quiz-card{min-height:unset}
-button{
-  border:none;border-radius:16px;padding:11px 14px;font-weight:700;font-size:.92rem;cursor:pointer;
-  background:linear-gradient(135deg, #8f79d6, #f3a8c8);color:#fff;box-shadow:0 10px 24px rgba(143,121,214,.18);
-}
-button:hover{transform:translateY(-1px)}
-.q-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px;flex-wrap:wrap}
-#q-counter{font-size:.84rem!important;color:var(--text-faint)!important}
-.prog{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-.prog-dot{width:10px;height:10px;border-radius:999px;background:#e7deff;border:1px solid rgba(143,121,214,.18)}
-.prog-dot.done{background:linear-gradient(135deg, #8f79d6, #f3a8c8);border-color:transparent}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"SF Pro Text","Inter","Avenir Next","Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(243,168,200,.35), transparent 26%),
+        radial-gradient(circle at top right, rgba(143,121,214,.20), transparent 22%),
+        radial-gradient(circle at 20% 80%, rgba(133,207,180,.22), transparent 20%),
+        linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
+      min-height:100vh;
+      padding:24px 14px 40px;
+    }
 
-.compare-head{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:800;margin-bottom:10px;color:var(--text)}
-.compare-item{font-size:.9rem;color:var(--text-soft);padding:7px 0;border-bottom:1px solid rgba(143,121,214,.08);line-height:1.5}
-.compare-item:last-child{border-bottom:none}
-.tip{
-  background:linear-gradient(180deg, rgba(237,245,255,.92), rgba(255,255,255,.84));
-  border:1px solid rgba(141,184,236,.26);
-  border-radius:22px;
-  padding:14px 16px;
-  margin-bottom:16px;
-  box-shadow:0 10px 30px rgba(111,94,154,.07)
-}
-.tip-title{font-size:.95rem;font-weight:800;color:#356aa8;margin-bottom:8px}
-.tip-item{font-size:.9rem;color:var(--text-soft);padding:5px 0;line-height:1.5}
-.v{font-weight:800;color:var(--text)}
-.quiz-q{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:14px;line-height:1.45}
-.quiz-opts{display:grid;gap:10px}
-.quiz-opt{width:100%;text-align:left;background:rgba(255,255,255,.86)!important;color:var(--text)!important;border:1px solid rgba(143,121,214,.14)!important;box-shadow:none!important}
-.quiz-opt.correct{background:rgba(133,207,180,.18)!important;border-color:rgba(133,207,180,.6)!important;color:#166649!important}
-.quiz-opt.wrong{background:rgba(242,179,127,.18)!important;border-color:rgba(242,179,127,.55)!important;color:#9b5f22!important}
-.quiz-opt.disabled{pointer-events:none;opacity:1}
-.quiz-fb{margin-top:12px;padding:12px 14px;border-radius:18px;font-size:.9rem;line-height:1.55;display:none}
-.quiz-fb.show{display:block}
-.quiz-fb.ok{background:rgba(133,207,180,.16);color:#166649;border:1px solid rgba(133,207,180,.45)}
-.quiz-fb.err{background:rgba(243,168,200,.16);color:#a14f73;border:1px solid rgba(243,168,200,.4)}
+    .wrap{max-width:1120px;margin:0 auto}
 
-footer{
-  margin-top:60px;
-  padding-top:18px;
-  border-top:1px solid rgba(180,150,200,.3);
-  text-align:center;
-  font-size:12.5px;
-  color:#7a6a8f;
-  opacity:.85;
-  line-height:1.7;
-  letter-spacing:.3px;
-}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(135deg, rgba(143,121,214,.94), rgba(243,168,200,.86));
+      border:1px solid rgba(255,255,255,.38);
+      border-radius:28px;
+      padding:26px 24px;
+      margin-bottom:16px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      box-shadow:var(--shadow);
+    }
 
-::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-thumb{background:rgba(143,121,214,.25);border-radius:999px}
-::-webkit-scrollbar-track{background:transparent}
+    .hero::before,.hero::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+    }
 
-@media (max-width:900px){
-  .grid3,.method-grid,.grid2,.compare-row{grid-template-columns:1fr}
-}
-@media (max-width:680px){
-  body{padding:16px 10px 28px}
-  .hero{padding:22px 18px;align-items:flex-start}
-  .hero-icon{width:58px;height:58px;font-size:28px;border-radius:18px}
-  .tab{width:100%;text-align:center}
-  .q-nav{justify-content:center}
-  button{width:100%}
-}
-</style>
+    .hero::before{width:170px;height:170px;right:-35px;top:-58px}
+    .hero::after{width:120px;height:120px;right:110px;bottom:-42px}
+
+    .hero-icon{
+      width:70px;
+      height:70px;
+      flex-shrink:0;
+      border-radius:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:34px;
+      background:rgba(255,255,255,.24);
+      border:1px solid rgba(255,255,255,.32);
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      color:#fff;
+      font-size:clamp(1.55rem, 3vw, 2.35rem);
+      font-weight:800;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.84);
+      font-size:.98rem;
+      margin-top:8px;
+      max-width:700px;
+    }
+
+    .tabs{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+
+    .tab{
+      font-size:.93rem;
+      font-weight:700;
+      padding:12px 18px;
+      border-radius:999px;
+      cursor:pointer;
+      border:1px solid rgba(143,121,214,.16);
+      transition:.22s ease;
+      color:var(--text-soft);
+      background:rgba(255,255,255,.7);
+      backdrop-filter:blur(10px);
+      box-shadow:0 6px 18px rgba(111,94,154,.05);
+    }
+
+    .tab:hover{transform:translateY(-1px);border-color:rgba(143,121,214,.28)}
+    .tab.active{background:linear-gradient(135deg, #8f79d6, #f3a8c8);color:#fff;border-color:transparent}
+
+    .panel{display:none;animation:fade .24s ease}
+    .panel.active{display:block}
+
+    @keyframes fade{
+      from{opacity:0;transform:translateY(4px)}
+      to{opacity:1;transform:none}
+    }
+
+    .sec-title{
+      font-size:1rem;
+      font-weight:800;
+      color:var(--text);
+      margin:0 0 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:-.01em;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      flex-shrink:0;
+      box-shadow:0 0 0 6px rgba(255,255,255,.55);
+    }
+
+    .grid2,.grid3,.method-grid{display:grid;gap:12px;margin-bottom:16px}
+    .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid3,.method-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .card,.method-card,.alert{
+      background:var(--surface);
+      backdrop-filter:blur(14px);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:16px 16px 14px;
+      box-shadow:0 10px 30px rgba(111,94,154,.08);
+    }
+
+    .card-title,.method-title{
+      font-size:.98rem;
+      font-weight:800;
+      margin-bottom:8px;
+      letter-spacing:-.01em;
+    }
+
+    .item,.method-item,.alert-item{
+      font-size:.92rem;
+      color:var(--text-soft);
+      padding:8px 0;
+      line-height:1.55;
+    }
+
+    .item{
+      border-bottom:1px solid rgba(143,121,214,.08);
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+    }
+
+    .item:last-child{border-bottom:none;padding-bottom:0}
+
+    .item::before{
+      content:'✦';
+      color:var(--accent);
+      font-size:.68rem;
+      line-height:1.8;
+      flex-shrink:0;
+    }
+
+    .method-card{padding:14px 14px 12px;border-radius:22px}
+    .method-item{font-size:.88rem;padding:3px 0}
+
+    .tip{
+      background:linear-gradient(180deg, rgba(237,245,255,.92), rgba(255,255,255,.84));
+      border:1px solid rgba(141,184,236,.26);
+      border-radius:22px;
+      padding:14px 16px;
+      margin-bottom:16px;
+      box-shadow:0 10px 30px rgba(111,94,154,.07);
+    }
+
+    .tip-title{font-size:.95rem;font-weight:800;color:#356aa8;margin-bottom:8px}
+    .tip-item{font-size:.9rem;color:var(--text-soft);padding:5px 0;line-height:1.5}
+
+    .alert{
+      background:linear-gradient(180deg, rgba(255,243,231,.9), rgba(255,255,255,.84));
+      margin-bottom:16px;
+    }
+
+    .alert-title{
+      font-size:.96rem;
+      font-weight:800;
+      color:#8a4f19;
+      margin-bottom:8px;
+    }
+
+    button{
+      border:none;
+      border-radius:16px;
+      padding:11px 14px;
+      font-weight:700;
+      font-size:.92rem;
+      cursor:pointer;
+      background:linear-gradient(135deg, #8f79d6, #f3a8c8);
+      color:#fff;
+      box-shadow:0 10px 24px rgba(143,121,214,.18);
+    }
+
+    .q-nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    #q-counter{font-size:.84rem!important;color:var(--text-faint)!important}
+    .prog{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+    .prog-dot{width:10px;height:10px;border-radius:999px;background:#e7deff;border:1px solid rgba(143,121,214,.18)}
+    .prog-dot.done{background:linear-gradient(135deg, #8f79d6, #f3a8c8);border-color:transparent}
+
+    .quiz-q{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:14px;line-height:1.45}
+    .quiz-opts{display:grid;gap:10px}
+    .quiz-opt{
+      width:100%;
+      text-align:left;
+      background:rgba(255,255,255,.86)!important;
+      color:var(--text)!important;
+      border:1px solid rgba(143,121,214,.14)!important;
+      box-shadow:none!important;
+    }
+
+    .quiz-opt.correct{background:rgba(133,207,180,.18)!important;border-color:rgba(133,207,180,.6)!important;color:#166649!important}
+    .quiz-opt.wrong{background:rgba(242,179,127,.18)!important;border-color:rgba(242,179,127,.55)!important;color:#9b5f22!important}
+    .quiz-opt.disabled{pointer-events:none;opacity:1}
+
+    .quiz-fb{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:18px;
+      font-size:.9rem;
+      line-height:1.55;
+      display:none;
+    }
+
+    .quiz-fb.show{display:block}
+    .quiz-fb.ok{background:rgba(133,207,180,.16);color:#166649;border:1px solid rgba(133,207,180,.45)}
+    .quiz-fb.err{background:rgba(243,168,200,.16);color:#a14f73;border:1px solid rgba(243,168,200,.4)}
+
+    footer{
+      margin-top:60px;
+      padding-top:18px;
+      border-top:1px solid rgba(180,150,200,.3);
+      text-align:center;
+      font-size:12.5px;
+      color:#7a6a8f;
+      opacity:.85;
+      line-height:1.7;
+      letter-spacing:.3px;
+    }
+
+    @media (max-width:900px){
+      .grid3,.method-grid,.grid2{grid-template-columns:1fr}
+    }
+
+    @media (max-width:680px){
+      body{padding:16px 10px 28px}
+      .hero{padding:22px 18px;align-items:flex-start}
+      .hero-icon{width:58px;height:58px;font-size:28px;border-radius:18px}
+      .tab{width:100%;text-align:center}
+      .q-nav{justify-content:center}
+      button{width:100%}
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -212,7 +316,6 @@ footer{
         <div class="tab" onclick="showTab('quiz')">Mini-quiz</div>
       </div>
 
-      <!-- TAB: DIETAS -->
       <div class="panel active" id="tab-dietas">
         <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Dietas para roedores</div>
 
@@ -224,10 +327,11 @@ footer{
             <div class="item">Não permite controle preciso de nutrientes</div>
             <div class="item">Menor custo e praticidade</div>
           </div>
+
           <div class="card">
             <div class="card-title" style="color:#085041">Dietas AIN (American Institute of Nutrition)</div>
             <div class="item">Composição química definida e reprodutível</div>
-            <div class="item">Usadas quando a dieta é a variável do estudo</div>
+            <div class="item">Usadas quando a dieta é variável do estudo</div>
             <div class="item">Permitem adicionar/remover nutrientes com precisão</div>
             <div class="item">Preparadas no próprio laboratório</div>
           </div>
@@ -235,359 +339,197 @@ footer{
 
         <div class="tip">
           <div class="tip-title">Dietas AIN-93G e AIN-93M</div>
-
-          <div class="tip-item">
-            As dietas AIN-93 são dietas purificadas, quimicamente definidas, amplamente utilizadas em estudos experimentais com roedores.
-          </div>
-
-          <div class="tip-item">
-            A dieta <strong>AIN-93G</strong> é indicada para fases de crescimento, sendo utilizada em <strong>filhotes, gestantes e lactantes</strong>, pois apresenta maior densidade energética e maior teor de nutrientes necessários ao desenvolvimento.
-          </div>
-
-          <div class="tip-item">
-            Já a dieta <strong>AIN-93M</strong> é destinada à fase de manutenção, sendo utilizada em animais adultos, com composição ajustada para manter o organismo sem promover crescimento.
-          </div>
-
-          <div class="tip-item">
-            Em relação à composição, <strong>ambas as dietas apresentam a mesma quantidade de celulose</strong>, diferindo principalmente nos teores de proteínas, lipídios e carboidratos, conforme as demandas fisiológicas de cada fase.
-          </div>
+          <div class="tip-item">As dietas AIN-93 são dietas purificadas, quimicamente definidas, amplamente utilizadas em estudos experimentais com roedores.</div>
+          <div class="tip-item">A dieta <strong>AIN-93G</strong> é indicada para fases de crescimento, sendo utilizada em <strong>filhotes, gestantes e lactantes</strong>.</div>
+          <div class="tip-item">A dieta <strong>AIN-93M</strong> é destinada à fase de manutenção, sendo utilizada em animais adultos.</div>
+          <div class="tip-item"><strong>Ambas apresentam a mesma quantidade de celulose</strong>, diferindo principalmente nos teores de proteínas, lipídios e carboidratos.</div>
         </div>
 
         <div class="tip">
           <div class="tip-title">Pontos essenciais sobre as dietas AIN-93</div>
-
-          <div class="tip-item">
-            → AIN-76A apresentava maior teor de sacarose e menor quantidade de óleo (5% de óleo de milho).
-          </div>
-
-          <div class="tip-item">
-            → Nas dietas AIN-93, o óleo utilizado é <strong>óleo de soja</strong>, devido ao melhor perfil lipídico, especialmente na razão ω-6:ω-3 (7:1) e PUFA:saturado (4:1).
-          </div>
-
-          <div class="tip-item">
-            → A quantidade de óleo de soja difere entre as dietas: <strong>7% na AIN-93G</strong> e <strong>4% na AIN-93M</strong>.
-          </div>
-
-          <div class="tip-item">
-            → A caseína é a fonte proteica padrão — disponível, de baixo custo e bem estudada. Suplementa-se L-cistina por ser deficiente em aminoácidos sulfurados.
-          </div>
-
-          <div class="tip-item">
-            → Perfil de carboidratos: ambas têm sacarose + amido de milho + amido dextrinizado — o que varia é a proporção entre os amidos.
-          </div>
+          <div class="tip-item">→ AIN-76A apresentava maior teor de sacarose e menor quantidade de óleo: <strong>5% de óleo de milho</strong>.</div>
+          <div class="tip-item">→ Nas dietas AIN-93, o óleo utilizado é <strong>óleo de soja</strong>, devido ao melhor perfil lipídico, especialmente na razão ω-6:ω-3 (7:1) e PUFA:saturado (4:1).</div>
+          <div class="tip-item">→ A quantidade de óleo varia entre as dietas: <strong>7% na AIN-93G</strong> e <strong>4% na AIN-93M</strong>.</div>
+          <div class="tip-item">→ A caseína é a fonte proteica padrão. Suplementa-se L-cistina devido à limitação em aminoácidos sulfurados.</div>
+          <div class="tip-item">→ Perfil de carboidratos: ambas têm sacarose + amido de milho + amido dextrinizado; o que varia é a proporção entre os amidos.</div>
         </div>
 
         <div class="tip">
-          <div class="tip-title">Atenção — dúvidas frequentes sobre dietas</div>
-
-          <div class="tip-item">
-            → AIN-93G ≠ AIN-93M não apenas em lipídios — diferem em proteína, lipídio, fósforo e carboidratos, <strong>porém apresentam a mesma quantidade de fibras (celulose)</strong>.
-          </div>
-
-          <div class="tip-item">
-            → AIN-76A apresentava <strong>maior teor de sacarose e menor quantidade de óleo</strong> (5% de óleo de milho), enquanto as dietas AIN-93 utilizam <strong>óleo de soja</strong>.
-          </div>
-
-          <div class="tip-item">
-            → A quantidade de óleo de soja <strong>não é a mesma</strong> entre as dietas AIN-93: é maior na AIN-93G e menor na AIN-93M.
-          </div>
-
-          <div class="tip-item">
-            → O aminoácido suplementado na AIN-93 é a L-cistina, devido à limitação da caseína em aminoácidos sulfurados.
-          </div>
-
-          <div class="tip-item">
-            → Consumo alimentar: a periodicidade da avaliação depende do delineamento do estudo, não sendo obrigatoriamente diária.
-          </div>
+          <div class="tip-title">Atenção — confusões frequentes sobre dietas</div>
+          <div class="tip-item">→ AIN-93G ≠ AIN-93M não apenas em lipídios: diferem em proteína, lipídio, fósforo e carboidratos, <strong>porém apresentam a mesma quantidade de fibras (celulose)</strong>.</div>
+          <div class="tip-item">→ AIN-76A apresentava <strong>mais sacarose e menos óleo</strong>, enquanto as dietas AIN-93 utilizam <strong>óleo de soja</strong>.</div>
+          <div class="tip-item">→ O aminoácido suplementado na AIN-93 é a <strong>L-cistina</strong>.</div>
+          <div class="tip-item">→ Consumo alimentar: a periodicidade da avaliação depende do delineamento do estudo, não sendo obrigatoriamente diária.</div>
         </div>
       </div>
 
-      <!-- TAB: MODELOS -->
       <div class="panel" id="tab-modelos">
         <div class="sec-title"><span class="dot" style="background:#0F6E56"></span>Modelos de indução — visão geral</div>
 
         <div class="method-grid">
           <div class="method-card" style="background:#F0FAF6;border-color:#5DCAA5">
             <div class="method-title" style="color:#085041">Desnutrição</div>
-            <div class="method-item">Perinatal: lig. mamas, lig. artéria uterina, separação filhotes, grandes ninhadas (16)</div>
-            <div class="method-item">Qualquer fase: DBR, gelatina (baixa qualidade prot.), restrição calórica (35–65%)</div>
+            <div class="method-item">Perinatal: ligadura das mamas, ligadura da artéria uterina, separação dos filhotes e grandes ninhadas.</div>
+            <div class="method-item">Qualquer fase: dieta básica regional, gelatina e restrição calórica.</div>
           </div>
+
           <div class="method-card" style="background:#F0FAF6;border-color:#5DCAA5">
             <div class="method-title" style="color:#085041">Obesidade</div>
-            <div class="method-item">Dietético: cafeteria, ocidentalizada, hiperlipídica, hipercalórica</div>
-            <div class="method-item">Neuroendócrino: MSG (1ª semana de vida), lesão elétrica NVM</div>
-            <div class="method-item">Cirúrgico: ovariectomia (fêmeas adultas → menopausa)</div>
-            <div class="method-item">Genético: ob/ob, Zucker, Camundongo amarelo</div>
+            <div class="method-item">Dietético: cafeteria, ocidentalizada, hiperlipídica e hipercalórica.</div>
+            <div class="method-item">Neuroendócrino: MSG e lesão elétrica do NVM.</div>
+            <div class="method-item">Cirúrgico: ovariectomia em fêmeas adultas.</div>
+            <div class="method-item">Genético: ob/ob, Zucker e camundongo amarelo.</div>
           </div>
+
           <div class="method-card" style="background:#FEF6F3;border-color:#F0997B">
             <div class="method-title" style="color:#712B13">Diabetes tipo 1</div>
-            <div class="method-item">Químico: Aloxana (EV 42mg/kg ou IP 120mg/kg) ou STZ (EV/IP 50–60mg/kg) após jejum 24h</div>
-            <div class="method-item">Genético: camundongo NOD, rato BB</div>
+            <div class="method-item">Químico: aloxana ou STZ após jejum.</div>
+            <div class="method-item">Genético: camundongo NOD e rato BB.</div>
           </div>
+
           <div class="method-card" style="background:#FEF6F3;border-color:#F0997B">
             <div class="method-title" style="color:#712B13">Diabetes tipo 2</div>
-            <div class="method-item">Dietético: dieta hiperlipídica (high-fat) por tempo prolongado → resistência insulínica</div>
-            <div class="method-item">Genético: ob/ob, Zucker (ambos também desenvolvem DM2 associado à obesidade)</div>
+            <div class="method-item">Dietético: dieta hiperlipídica por tempo prolongado.</div>
+            <div class="method-item">Genético: ob/ob e Zucker.</div>
           </div>
+
           <div class="method-card" style="background:#EDF4FE;border-color:#85B7EB">
             <div class="method-title" style="color:#0C447C">Hipertensão</div>
-            <div class="method-item">Cirúrgico: nefrectomia bilateral + NaCl 1% (mais estudado, simula fisiopatologia humana); estenose artéria renal (Goldblatt)</div>
-            <div class="method-item">Químico: L-NAME (inibe NO-sintase); DOCA-sal (animais jovens)</div>
-            <div class="method-item">Genético: SHR (7ª–15ª sem.); ratos Dahl sensíveis ao sal</div>
+            <div class="method-item">Cirúrgico: nefrectomia bilateral + NaCl 1% e estenose da artéria renal.</div>
+            <div class="method-item">Químico: L-NAME e DOCA-sal.</div>
+            <div class="method-item">Genético: SHR e Dahl sensível ao sal.</div>
           </div>
+
           <div class="method-card" style="background:#FDF6E6;border-color:#EF9F27">
             <div class="method-title" style="color:#633806">Dislipidemia</div>
-            <div class="method-item">Dietético: high-fat + banha + colesterol + ácido cólico (10%, 1%, 0,1%)</div>
-            <div class="method-item">Químico: Triton IP 100mg/kg (hipercolest.); Poloxamer IP 300–500mg/kg</div>
-            <div class="method-item">Genético: camundongo ApoE–/– (aterosclerose espontânea)</div>
-          </div>
-        </div>
-
-        <div class="sec-title"><span class="dot" style="background:#993C1D"></span>Modelos genéticos — detalhes importantes</div>
-        <div class="grid3">
-          <div class="card">
-            <div class="card-title" style="color:#712B13">Camundongo ob/ob</div>
-            <div class="item">Mutação cromossomo 6</div>
-            <div class="item">Ausência de síntese de leptina</div>
-            <div class="item">Fenótipo: hiperfágico, obeso, diabético (DM2)</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#712B13">Rato Zucker</div>
-            <div class="item">Mutação no receptor de leptina</div>
-            <div class="item">Leptina produzida, mas não reconhecida</div>
-            <div class="item">Fenótipo: hiperfágico, obeso, diabético (DM2)</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#712B13">Camundongo amarelo</div>
-            <div class="item">Mutação cromossomo 2</div>
-            <div class="item">Excesso proteína agouti → resposta orexígena</div>
-            <div class="item">Fenótipo: hiperfagia, obesidade</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#0C447C">Camundongo NOD</div>
-            <div class="item">Destruição autoimune células beta</div>
-            <div class="item">Diabetes tipo 1 espontâneo</div>
-            <div class="item">Sintomas: glicemia > 250mg/dL, glicosúria</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#0C447C">Rato BB (Biobreeding)</div>
-            <div class="item">Ausência células T, insulite espontânea</div>
-            <div class="item">Sintomas por volta de 12 semanas</div>
-            <div class="item">DM1 com cetoacidose, polidipsia, poliúria</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#633806">Camundongo ApoE–/–</div>
-            <div class="item">Sem proteína apolipoproteína E</div>
-            <div class="item">Dislipidemia + aterosclerose espontânea</div>
-            <div class="item">Útil para estudos cardiovasculares</div>
+            <div class="method-item">Dietético: high-fat + banha + colesterol + ácido cólico.</div>
+            <div class="method-item">Químico: Triton e Poloxamer.</div>
+            <div class="method-item">Genético: camundongo ApoE–/–.</div>
           </div>
         </div>
 
         <div class="alert">
           <div class="alert-title">Atenção — erros conceituais comuns</div>
-          <div class="alert-item">→ Dietas obesogênicas (high-fat, frutose, cafeteria) NÃO induzem diabetes tipo 1 — induzem DM2 associado à obesidade.</div>
-          <div class="alert-item">→ Lesão do núcleo ventromedial (NVM) por MSG: restrita aos primeiros dias de vida (via SC, 4mg/g, 5 dias). Não é aplicável em qualquer fase da vida.</div>
-          <div class="alert-item">→ Lesão elétrica NVM: 1,2 mA × 4s, repetida 3× em intervalos de 30s, sob anestesia geral. Também restrita à fase neonatal/lactação.</div>
-          <div class="alert-item">→ Ovariectomia simula menopausa — modelo válido para fêmeas adultas, não para qualquer fase da vida.</div>
-          <div class="alert-item">→ High-fat pode induzir obesidade OU dislipidemia dependendo do tempo de administração (curto = dislipidemia; longo = obesidade).</div>
-          <div class="alert-item">→ Grande ninhada (16 filhotes) → desnutrição por competição. Pequena ninhada (3 filhotes) → supernutrição/obesidade.</div>
-          <div class="alert-item">→ STZ é usada para diabetes tipo 1 — NÃO para hipertensão. L-NAME é para hipertensão.</div>
+          <div class="alert-item">→ Dietas obesogênicas não induzem diabetes tipo 1; induzem DM2 associado à obesidade.</div>
+          <div class="alert-item">→ MSG e lesão do NVM não são aplicáveis a qualquer fase da vida.</div>
+          <div class="alert-item">→ Ovariectomia simula menopausa e é válida para fêmeas adultas.</div>
+          <div class="alert-item">→ Grande ninhada induz desnutrição; pequena ninhada induz supernutrição/obesidade.</div>
         </div>
       </div>
 
-      <!-- TAB: VIAS -->
       <div class="panel" id="tab-vias">
         <div class="sec-title"><span class="dot" style="background:#993C1D"></span>Vias de administração — quando usar cada uma</div>
 
         <div class="grid3">
           <div class="card">
-            <div class="card-title" style="color:#712B13">Gavagem (sonda orogástrica)</div>
-            <div class="item">Dose exata e controlada individualmente</div>
-            <div class="item">Substâncias com sabor desagradável</div>
-            <div class="item">Protocolos que exigem controle rigoroso</div>
-            <div class="item">Ex: sucos, extratos, probióticos, chás medicinais</div>
-            <div class="item">Gaiola coletiva: substância vai por gavagem, não na ração</div>
+            <div class="card-title" style="color:#712B13">Gavagem</div>
+            <div class="item">Dose exata e controlada individualmente.</div>
+            <div class="item">Indicada para substâncias com sabor desagradável.</div>
+            <div class="item">Preferível quando o protocolo exige controle rigoroso.</div>
           </div>
+
           <div class="card">
             <div class="card-title" style="color:#3C3489">Incorporada na dieta</div>
-            <div class="item">Substância misturada na ração (pellets)</div>
-            <div class="item">Substância palatável e estável na matriz alimentar</div>
-            <div class="item">Dose estimada pelo consumo de ração</div>
-            <div class="item">Gaiola individual: permite controle por animal</div>
+            <div class="item">Substância misturada à ração.</div>
+            <div class="item">Exige estabilidade e palatabilidade.</div>
+            <div class="item">Dose estimada pelo consumo da ração.</div>
           </div>
+
           <div class="card">
-            <div class="card-title" style="color:#085041">Bebedouro (água de beber)</div>
-            <div class="item">Substância diluída na água</div>
-            <div class="item">Substância palatável, estável em solução aquosa</div>
-            <div class="item">Dose estimada pelo consumo hídrico</div>
-            <div class="item">Risco: rejeição pelo sabor ou instabilidade</div>
+            <div class="card-title" style="color:#085041">Bebedouro</div>
+            <div class="item">Substância diluída na água.</div>
+            <div class="item">Depende da palatabilidade e estabilidade em solução.</div>
+            <div class="item">Dose estimada pelo consumo hídrico.</div>
           </div>
         </div>
 
         <div class="tip">
           <div class="tip-title">Regra prática — como decidir a via</div>
-          <div class="tip-item">→ Se a substância tem sabor amargo/desagradável ou se o estudo exige dose precisa → sempre gavagem.</div>
-          <div class="tip-item">→ Sucos, chás, kombucha e bebidas fermentadas em animais doentes (ex: diabéticos) → gavagem (não bebedouro), pois o animal pode rejeitar ou consumir quantidade variável.</div>
-          <div class="tip-item">→ Bebedouro é válido para substâncias saborizadas e palatáveis, sem exigência de dose exata.</div>
-          <div class="tip-item">→ Teste de tolerância à insulina (TTI): jejum 8h + insulina IP ou SC (0,75 UI/kg) + leitura glicemia em 0, 15, 30, 60, 90, 120 min.</div>
-        </div>
-
-        <div class="alert">
-          <div class="alert-title">Atenção — erros na escolha da via</div>
-          <div class="alert-item">→ Sucos e chás medicinais em ratos diabéticos: a via indicada é a gavagem, NÃO o bebedouro ou a dieta — o animal diabético bebe mais água, o que distorceria a dose.</div>
-          <div class="alert-item">→ Kombucha e outras bebidas fermentadas: mesma lógica — gavagem para controle de dose.</div>
-          <div class="alert-item">→ Substância teste em gaiola coletiva: impossível controlar consumo individual — usar gavagem para garantir dose por animal.</div>
+          <div class="tip-item">→ Se a substância tem sabor desagradável ou se a dose precisa ser exata, prefere-se gavagem.</div>
+          <div class="tip-item">→ Sucos, chás, kombucha e bebidas fermentadas em animais diabéticos devem ser administrados por gavagem.</div>
+          <div class="tip-item">→ Em gaiola coletiva, a gavagem evita distorção da dose individual.</div>
         </div>
       </div>
 
-      <!-- TAB: AVALIAÇÕES -->
       <div class="panel" id="tab-avals">
         <div class="sec-title"><span class="dot" style="background:#185FA5"></span>Avaliações experimentais por domínio</div>
 
         <div class="grid2">
           <div class="card">
             <div class="card-title" style="color:#0C447C">Metabolismo glicídico</div>
-            <div class="item">Glicemia de jejum (padrão básico)</div>
-            <div class="item">Insulinemia sérica</div>
-            <div class="item">HOMA-IR (resistência à insulina)</div>
-            <div class="item">TTG — teste de tolerância oral à glicose</div>
-            <div class="item">TTI — teste de tolerância à insulina (jejum 8h, 0,75 UI/kg IP ou SC)</div>
-            <div class="item">Na urina: glicosúria, pH, acidez (DM)</div>
+            <div class="item">Glicemia de jejum.</div>
+            <div class="item">Insulinemia sérica.</div>
+            <div class="item">HOMA-IR.</div>
+            <div class="item">TTG.</div>
+            <div class="item">TTI.</div>
           </div>
+
           <div class="card">
             <div class="card-title" style="color:#712B13">Inflamação</div>
-            <div class="item">Citocinas no tecido (IL-6, TNF-α, interleucinas) — mais fidedigno para inflamação local (in loco)</div>
-            <div class="item">PCR (proteína C reativa) sérica — marcador sistêmico</div>
-            <div class="item">Alfaglicoproteína ácida sérica</div>
-            <div class="item">Para obesidade: citocinas no tecido adiposo são preferíveis à PCR sérica para análise local</div>
+            <div class="item">Citocinas teciduais.</div>
+            <div class="item">PCR sérica.</div>
+            <div class="item">Alfaglicoproteína ácida.</div>
           </div>
+
           <div class="card">
             <div class="card-title" style="color:#633806">Estresse oxidativo</div>
-            <div class="item">SOD (superóxido dismutase) — enzima antioxidante</div>
-            <div class="item">GPx (glutationa peroxidase) — enzima antioxidante</div>
-            <div class="item">Catalase — enzima antioxidante</div>
-            <div class="item">MDA (malondialdeído) — peroxidação lipídica</div>
-            <div class="item">CAT (capacidade antioxidante total) sérica</div>
-            <div class="item">Análise enzimática no tecido-alvo é mais fidedigna que MDA sérico para estresse oxidativo local</div>
+            <div class="item">SOD.</div>
+            <div class="item">GPx.</div>
+            <div class="item">Catalase.</div>
+            <div class="item">MDA.</div>
           </div>
+
           <div class="card">
             <div class="card-title" style="color:#085041">Microbiota e saúde intestinal</div>
-            <div class="item">Sequenciamento rRNA 16S (padrão-ouro para composição da microbiota)</div>
-            <div class="item">Ácidos orgânicos (acético, butírico, propiônico) nas fezes e intestino</div>
-            <div class="item">Esses ácidos também podem ser dosados no cérebro (atravessam barreiras intestinal e hematoencefálica)</div>
-            <div class="item">Histologia do intestino (morfologia, cripta, vilosidade)</div>
+            <div class="item">Sequenciamento rRNA 16S.</div>
+            <div class="item">Ácidos orgânicos nas fezes e intestino.</div>
+            <div class="item">Histologia intestinal.</div>
           </div>
+
           <div class="card">
             <div class="card-title" style="color:#3C3489">Avaliação hepática</div>
-            <div class="item">TGO e TGP (transaminases) — lesão hepatocelular</div>
-            <div class="item">Histologia hepática (esteatose, fibrose)</div>
-            <div class="item">Colesterol e triglicerídeos hepáticos</div>
-            <div class="item">Ácidos graxos, ácidos biliares nas fezes/fígado (dislipidemia)</div>
+            <div class="item">TGO e TGP.</div>
+            <div class="item">Histologia hepática.</div>
+            <div class="item">Colesterol e triglicerídeos hepáticos.</div>
           </div>
+
           <div class="card">
             <div class="card-title" style="color:#3C3489">Avaliação renal e pressórica</div>
-            <div class="item">Pletismografia (invasiva, canulação femoral) — mais sensível</div>
-            <div class="item">Tail-cuff (não invasiva, cauda) — menos sensível</div>
-            <div class="item">Hipertenso: PA caudal ≥ 150 mmHg</div>
-            <div class="item">Volume urinário (gaiola metabólica) — influenciado pela ingestão hídrica</div>
-            <div class="item">Histologia renal e vascular</div>
+            <div class="item">Pletismografia.</div>
+            <div class="item">Tail-cuff.</div>
+            <div class="item">Histologia renal e vascular.</div>
           </div>
-          <div class="card">
-            <div class="card-title" style="color:#633806">Comportamento</div>
-            <div class="item">Sempre mais de um teste para confirmar comportamento</div>
-            <div class="item">Campo Aberto — locomoção, exploração, ansiedade</div>
-            <div class="item">Splash teste (esguicho de sacarose) — autolimpeza (grooming)</div>
-            <div class="item">Parâmetros: grooming, freezing, defecação, tempo em área central</div>
-            <div class="item">Duração padrão: 5 minutos por teste</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#085041">Composição corporal e adiposidade</div>
-            <div class="item">IMC (peso/comprimento²) — obesos: > 0,68 g/cm²</div>
-            <div class="item">Índice de Lee — obesos: > 0,30</div>
-            <div class="item">Índice de adiposidade (% gordura corporal)</div>
-            <div class="item">Peso relativo dos órgãos / peso corporal</div>
-            <div class="item">Composição corporal (nitrogênio de carcaça)</div>
-            <div class="item">Circunferências abdominal e torácica</div>
-          </div>
-        </div>
-
-        <div class="alert">
-          <div class="alert-title">Atenção — o que avaliar em cada modelo</div>
-          <div class="alert-item">→ Diabetes tipo 1: prioridade em glicemia, insulinemia, histologia pancreática, renal e ocular, urinálise. Índice de adiposidade e gordura hepática NÃO são primordiais neste modelo.</div>
-          <div class="alert-item">→ Dislipidemia: histologia hepática, lipídios séricos, lipídios totais + AG + ácidos biliares + TG nas fezes e no fígado são essenciais.</div>
-          <div class="alert-item">→ Hipertensão: PA, histologia renal/vascular, função endotelial. Gordura hepática e índice de adiposidade não são primordiais.</div>
-          <div class="alert-item">→ Volume urinário NÃO é padrão-ouro isolado — sofre influência direta da ingestão hídrica. Deve ser interpretado em conjunto com outros parâmetros.</div>
         </div>
       </div>
 
-      <!-- TAB: BIOTÉRIO -->
       <div class="panel" id="tab-biot">
         <div class="sec-title"><span class="dot" style="background:#993556"></span>Biotério — macro e microambiente</div>
 
         <div class="grid2">
           <div class="card">
-            <div class="card-title" style="color:#72243E">Macroambiente (sala/instalação)</div>
-            <div class="item">Temperatura: 20 ± 2°C</div>
-            <div class="item">Umidade relativa: 40–60%</div>
-            <div class="item">Fotoperíodo: 12h claro / 12h escuro (temporizador)</div>
-            <div class="item">Roedores: hábitos noturnos — sono diurno</div>
-            <div class="item">Ventilação: 15–25 trocas de ar/hora</div>
-            <div class="item">Ruído excessivo: estresse, alterações metabólicas, redução da fertilidade</div>
+            <div class="card-title" style="color:#72243E">Macroambiente</div>
+            <div class="item">Temperatura: 20 ± 2°C.</div>
+            <div class="item">Umidade relativa: 40–60%.</div>
+            <div class="item">Fotoperíodo: 12h claro / 12h escuro.</div>
+            <div class="item">Ventilação: 15–25 trocas de ar/hora.</div>
           </div>
-          <div class="card">
-            <div class="card-title" style="color:#72243E">Microambiente (gaiola)</div>
-            <div class="item">Gaiola coletiva: máx. 5 ratos · consumo médio do grupo</div>
-            <div class="item">Gaiola individual convencional: consumo individual · sem coleta urina/fezes separada</div>
-            <div class="item">Gaiola metabólica: consumo individual + coleta de urina + coleta de fezes separadas</div>
-            <div class="item">Cama: maravalha, serragem · troca ~2 dias</div>
-            <div class="item">Bebedouro: ad libitum · lavar diariamente</div>
-          </div>
-        </div>
 
-        <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Identificação obrigatória das gaiolas</div>
-        <div class="card" style="margin-bottom:10px">
-          <div class="item">Grupo experimental e número de animais</div>
-          <div class="item">Sexo e data de nascimento dos animais</div>
-          <div class="item">Data de início do experimento</div>
-          <div class="item">Tipo de dieta oferecida</div>
-          <div class="item">Informação sobre gestação (quando aplicável)</div>
-          <div class="item">Nome dos responsáveis pelo experimento</div>
-        </div>
-
-        <div class="sec-title"><span class="dot" style="background:#3B6D11"></span>Tipos de gaiola — quando usar cada uma</div>
-        <div class="grid3">
           <div class="card">
-            <div class="card-title" style="color:#27500A">Coletiva (caixa)</div>
-            <div class="item">Até 5 animais/gaiola</div>
-            <div class="item">Consumo médio do grupo</div>
-            <div class="item">Substância teste: sempre por gavagem</div>
-            <div class="item">Não permite coleta individual de urina/fezes</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#27500A">Individual convencional</div>
-            <div class="item">1 animal</div>
-            <div class="item">Consumo individual exato</div>
-            <div class="item">Substância: gavagem ou incorporada na dieta</div>
-            <div class="item">Não permite coleta de urina/fezes separada</div>
-          </div>
-          <div class="card">
-            <div class="card-title" style="color:#27500A">Metabólica</div>
-            <div class="item">1 animal</div>
-            <div class="item">Consumo individual exato</div>
-            <div class="item">Coleta de urina e fezes separadas</div>
-            <div class="item">Necessária para estudos de função renal</div>
+            <div class="card-title" style="color:#72243E">Microambiente</div>
+            <div class="item">Gaiola coletiva: até 5 ratos.</div>
+            <div class="item">Gaiola individual convencional.</div>
+            <div class="item">Gaiola metabólica: coleta de urina e fezes separadas.</div>
           </div>
         </div>
       </div>
 
-      <!-- TAB: QUIZ -->
       <div class="panel" id="tab-quiz">
         <div class="sec-title"><span class="dot" style="background:#534AB7"></span>Mini-quiz de revisão</div>
         <div id="quiz-wrap"></div>
         <div class="q-nav">
           <button onclick="prevQ()" style="font-size:12px">← anterior</button>
           <div>
-            <span id="q-counter">1 / 10</span>
+            <span id="q-counter">1 / 5</span>
             <div class="prog" id="prog" style="margin-top:4px"></div>
           </div>
           <button onclick="nextQ()" style="font-size:12px">próxima →</button>
@@ -602,50 +544,82 @@ footer{
     </div>
   </div>
 
-<script>
-function showTab(id){
-  const ids=['dietas','modelos','vias','avals','biot','quiz'];
-  document.querySelectorAll('.tab').forEach((t,i)=>{
-    t.classList.toggle('active',ids[i]===id);
-  });
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  if(id==='quiz') renderQ();
-}
+  <script>
+    function showTab(id){
+      const ids=['dietas','modelos','vias','avals','biot','quiz'];
+      document.querySelectorAll('.tab').forEach((t,i)=>{
+        t.classList.toggle('active', ids[i]===id);
+      });
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      document.getElementById('tab-'+id).classList.add('active');
+      if(id==='quiz') renderQ();
+    }
 
-const QS=[
-  {q:"Qual a principal diferença nutricional entre as dietas AIN-93G e AIN-93M?",opts:["Diferem apenas na quantidade de celulose","Diferem em proteína, lipídios, fósforo e carboidratos, mantendo a mesma quantidade de fibras","São idênticas, diferindo apenas no amido","Diferem apenas no teor de carboidratos"],ans:1,fb:"As dietas AIN-93G e AIN-93M diferem em proteína, lipídios, fósforo e carboidratos. Ambas mantêm a mesma quantidade de celulose (fibra)."},
-  {q:"Qual o método químico mais aceito internacionalmente para indução de diabetes tipo 1?",opts:["Aloxana intraperitoneal","Estreptozotocina (STZ)","Poloxamer intravenoso","Triton IP"],ans:1,fb:"A STZ é o método mais aceito internacionalmente por apresentar menor índice de mortalidade em comparação à aloxana. Ambas destroem células beta pancreáticas."},
-  {q:"Ratos com pressão arterial caudal ≥ 150 mmHg são considerados:",opts:["Pré-hipertensos","Hipertensos","Normotensos com risco","Hipertensos apenas se associado a doença renal"],ans:1,fb:"O critério para classificar ratos como hipertensos é pressão arterial caudal ≥ 150 mmHg, medida por tail-cuff ou pletismografia."},
-  {q:"Para administrar suco de fruta a ratos diabéticos em estudo experimental, a via mais indicada é:",opts:["Bebedouro (livre acesso)","Incorporado na ração","Gavagem orogástrica","Intraperitoneal"],ans:2,fb:"A gavagem é a via indicada pois garante dose exata por animal. Ratos diabéticos bebem mais água (polidipsia), o que distorceria a dose no bebedouro."},
-  {q:"A técnica das pequenas ninhadas (3 filhotes por ninhada) é usada para induzir:",opts:["Desnutrição perinatal por competição","Obesidade neonatal por supernutrição","Hipertensão na prole","Diabetes tipo 2 precoce"],ans:1,fb:"Com apenas 3 filhotes para uma fêmea com leite abundante, cada filhote recebe excesso de nutrientes, desenvolvendo hiperfagia, obesidade, hiperinsulinemia e resistência periférica ao longo da vida."},
-  {q:"Qual modelo genético de obesidade apresenta mutação no receptor de leptina?",opts:["Camundongo ob/ob","Rato Zucker","Camundongo amarelo","Rato NOD"],ans:1,fb:"O rato Zucker apresenta mutação no gene que codifica o receptor de leptina. O ob/ob tem ausência de síntese da leptina em si. O camundongo amarelo tem excesso de proteína agouti."},
-  {q:"Para avaliação de saúde intestinal e microbiota, qual técnica fornece a caracterização mais detalhada da composição da microbiota?",opts:["Técnica de microgota","Cultura bacteriana convencional","Sequenciamento do gene rRNA 16S","PCR simples de fezes"],ans:2,fb:"O sequenciamento de alto rendimento do gene rRNA 16S é considerado o padrão-ouro para caracterização detalhada da composição da microbiota intestinal."},
-  {q:"A ovariectomia como modelo de obesidade é válida para:",opts:["Fêmeas em qualquer fase da vida","Fêmeas adultas, simulando menopausa","Machos e fêmeas na fase neonatal","Fêmeas jovens durante a puberdade"],ans:1,fb:"A ovariectomia simula a menopausa. É um modelo válido para fêmeas adultas, não para qualquer fase da vida."},
-  {q:"Em estudos de dislipidemia, quais análises são primordiais?",opts:["Pressão arterial, histologia renal e gordura visceral","Histologia hepática, lipídios séricos e lipídios/ácidos graxos nas fezes e no fígado","Glicemia, insulinemia e HOMA-IR","IMC, índice de Lee e comportamento ansioso"],ans:1,fb:"Em estudos de dislipidemia, são primordiais: histologia hepática, lipídios séricos, e análise de lipídios totais, ácidos graxos, ácidos biliares e triglicerídeos nas fezes e no fígado."},
-  {q:"Qual a gaiola indicada quando o objetivo é coletar urina e fezes separadamente por animal?",opts:["Gaiola coletiva tipo caixa","Gaiola individual convencional","Gaiola metabólica","Qualquer gaiola individual"],ans:2,fb:"Apenas a gaiola metabólica permite a coleta simultânea e separada de urina e fezes por animal."}
-];
+    const QS = [
+      {
+        q:"Qual a principal diferença nutricional entre as dietas AIN-93G e AIN-93M?",
+        opts:["Diferem apenas na quantidade de celulose","Diferem em proteína, lipídios, fósforo e carboidratos, mantendo a mesma quantidade de fibras","São idênticas","Diferem apenas no tipo de óleo"],
+        ans:1,
+        fb:"As dietas AIN-93G e AIN-93M diferem em proteína, lipídios, fósforo e carboidratos, mantendo a mesma quantidade de celulose."
+      },
+      {
+        q:"Qual método químico é amplamente usado para indução de diabetes tipo 1?",
+        opts:["Poloxamer","STZ","L-NAME","Ácido cólico"],
+        ans:1,
+        fb:"A estreptozotocina é um dos métodos químicos mais usados para indução de diabetes tipo 1."
+      },
+      {
+        q:"Qual a via mais indicada para administrar suco a ratos diabéticos?",
+        opts:["Bebedouro","Gavagem","Ração","Intravenosa"],
+        ans:1,
+        fb:"A gavagem garante maior controle da dose administrada."
+      },
+      {
+        q:"Qual gaiola permite coleta separada de urina e fezes?",
+        opts:["Coletiva","Individual comum","Metabólica","Nenhuma"],
+        ans:2,
+        fb:"A gaiola metabólica permite coleta separada de urina e fezes."
+      },
+      {
+        q:"A ovariectomia é modelo de obesidade válido para:",
+        opts:["Qualquer fase da vida","Fêmeas adultas","Machos adultos","Filhotes"],
+        ans:1,
+        fb:"A ovariectomia é usada em fêmeas adultas, simulando menopausa."
+      }
+    ];
 
-let cur=0,answered=[];
-function renderQ(){
-  const qw=document.getElementById('quiz-wrap');
-  const q=QS[cur];
-  const done=answered[cur];
-  qw.innerHTML=`<div class="quiz-q">${cur+1}. ${q.q}</div>
-  <div class="quiz-opts">${q.opts.map((o,i)=>`<button class="quiz-opt${done!==undefined?(i===q.ans?' correct':(i===done?' wrong':'')):''}${done!==undefined?' disabled':''}" onclick="answer(${i})">${o}</button>`).join('')}</div>
-  <div class="quiz-fb${done!==undefined?' show '+(done===q.ans?'ok':'err'):''}" id="qfb">${q.fb}</div>`;
-  const p=document.getElementById('prog');
-  p.innerHTML=QS.map((_,i)=>`<div class="prog-dot${answered[i]!==undefined?' done':''}"></div>`).join('');
-  document.getElementById('q-counter').textContent=`${cur+1} / ${QS.length}`;
-}
-function answer(i){
-  if(answered[cur]!==undefined)return;
-  answered[cur]=i;
-  renderQ();
-}
-function nextQ(){cur=(cur+1)%QS.length;renderQ();}
-function prevQ(){cur=(cur-1+QS.length)%QS.length;renderQ();}
-renderQ();
-</script>
+    let cur=0, answered=[];
+
+    function renderQ(){
+      const qw=document.getElementById('quiz-wrap');
+      const q=QS[cur];
+      const done=answered[cur];
+
+      qw.innerHTML = `
+        <div class="quiz-q">${cur+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((o,i)=>`
+            <button class="quiz-opt${done!==undefined?(i===q.ans?' correct':(i===done?' wrong':'')):''}${done!==undefined?' disabled':''}" onclick="answer(${i})">${o}</button>
+          `).join('')}
+        </div>
+        <div class="quiz-fb${done!==undefined?' show '+(done===q.ans?'ok':'err'):''}">${q.fb}</div>
+      `;
+
+      const p=document.getElementById('prog');
+      p.innerHTML = QS.map((_,i)=>`<div class="prog-dot${answered[i]!==undefined?' done':''}"></div>`).join('');
+      document.getElementById('q-counter').textContent=`${cur+1} / ${QS.length}`;
+    }
+
+    function answer(i){
+      if(answered[cur]!==undefined) return;
+      answered[cur]=i;
+      renderQ();
+    }
+
+    function nextQ(){ cur=(cur+1)%QS.length; renderQ(); }
+    function prevQ(){ cur=(cur-1+QS.length)%QS.length; renderQ(); }
+
+    renderQ();
+  </script>
 </body>
 </html>
